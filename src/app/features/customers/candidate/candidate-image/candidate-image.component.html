@@ -1,0 +1,40 @@
+<form [formGroup]="imageAddForm">
+    <div class="mb-3">
+         <label for="formFile" class="form-label">Upload a photo</label>
+         <input type="file" id="multipartFile" formControlName="multipartFile" class="form-control"  />
+    </div>
+     <div class="card-footer">
+        <button
+          [disabled]="!imageAddForm.valid"
+          (click)="uploadImage()"
+          class="btn btn-primary"
+        >
+          Upload Image
+        </button>
+      </div>
+ </form>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="imageAddForm" class="m-3">
+        <h5>Upload Image</h5>
+        <label for="formFile" class="form-label">Please choose your photo</label>
+        <input (change)="onFileSelected($event)" class="form-control w-100" formControlName="multipartFile" type="file"
+          id="multipartFile" />
+        <button [disabled]="!imageAddForm.valid" class="btn btn-primary my-3" (click)="uploadImage()">
+          Upload image
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

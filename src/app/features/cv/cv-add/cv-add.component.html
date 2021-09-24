@@ -1,0 +1,30 @@
+  <div class="content">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-header">
+        <h5>Create Cv</h5>
+      </div>
+       <app-candidate-school-form></app-candidate-school-form>
+      <app-candidate-job-experince-form></app-candidate-job-experince-form>
+      <app-candidate-language-form></app-candidate-language-form>
+      <app-candidate-skill-from></app-candidate-skill-from>
+      <app-candidate-image></app-candidate-image>
+      <app-candidate-github></app-candidate-github>
+      <app-candidate-linkedin></app-candidate-linkedin>
+       <div class="card-footer">
+        <button
+          [disabled]="!cvAddForm.valid" (click)="cvAdd()" class="btn btn-primary">
+          Add
+        </button>
+      </div>
+     </div>
+  </div>
+</div>  
+
+
+
+
+
+
+
+
