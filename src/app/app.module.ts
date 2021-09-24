@@ -25,15 +25,15 @@ import { JobAdvertisementComponent } from './features/job-advertisement/job-adve
 import { JobAdvertisementListComponent } from './features/job-advertisement/job-advertisement-list/job-advertisement-list.component';
 import { JobAdvertisementListByEmployerComponent } from './features/job-advertisement/job-advertisement-list-by-employer/job-advertisement-list-by-employer.component';
 import { AccordionModule } from 'primeng/accordion';
-import { CandidateSchoolFormComponent } from './features/customers/candidate/candidate-school/candidate-school-form.component';
-import { CandidateSkillFromComponent } from './features/customers/candidate/candidate-skill/candidate-skill-from/candidate-skill-from.component';
-import { CandidateLanguageFormComponent } from './features/customers/candidate/candidate-language/candidate-language-form/candidate-language-form.component';
-import { CandidateJobExperinceFormComponent } from './features/customers/candidate/candidate-jobExperince/candidate-job-experince-form/candidate-job-experince-form.component';
+import { CandidateSchoolFormComponent } from './features/customers/candidate/candidate-school-form/candidate-school-form.component';
+import { CandidateSkillFromComponent } from './features/customers/candidate/candidate-skill/candidate-skill-from.component';
+import { CandidateLanguageFormComponent } from './features/customers/candidate/candidate-language-form/candidate-language-form.component';
 import { CvAddComponent } from './features/cv/cv-add/cv-add.component';
 import { CandidateImageComponent } from './features/customers/candidate/candidate-image/candidate-image.component';
 import { CandidateGithubComponent } from './features/customers/candidate/candidate-github/candidate-github.component';
 import { CandidateLinkedinComponent } from './features/customers/candidate/candidate-linkedin/candidate-linkedin.component';
-
+import { CandidateJobExperinceFormComponent } from './features/customers/candidate/candidate-job-experince-form/candidate-job-experince-form.component';
+ 
 
 
 @NgModule({
@@ -60,10 +60,10 @@ import { CandidateLinkedinComponent } from './features/customers/candidate/candi
     CandidateSchoolFormComponent,
     CandidateSkillFromComponent,
     CandidateLanguageFormComponent,
-    CandidateJobExperinceFormComponent,
     CandidateImageComponent,
     CandidateGithubComponent,
     CandidateLinkedinComponent,
+    CandidateJobExperinceFormComponent
     
 
 

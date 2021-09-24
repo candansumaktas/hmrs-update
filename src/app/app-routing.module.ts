@@ -19,13 +19,13 @@ import { ListEmployersGuard } from './guards/list-employer/list-employers.guard'
 import { ListPositionsGuard } from './guards/list-positions/list-positions.guard';
 import { CvAddGuard } from './guards/cv-add/cv-add.guard';
 import { CandidateImageComponent } from './features/customers/candidate/candidate-image/candidate-image.component';
-import { CandidateLanguageFormComponent } from './features/customers/candidate/candidate-language/candidate-language-form/candidate-language-form.component';
-import { CandidateJobExperinceFormComponent } from './features/customers/candidate/candidate-jobExperince/candidate-job-experince-form/candidate-job-experince-form.component';
-import { CandidateSkillFromComponent } from './features/customers/candidate/candidate-skill/candidate-skill-from/candidate-skill-from.component';
-import { CandidateSchoolFormComponent } from './features/customers/candidate/candidate-school/candidate-school-form.component';
+import { CandidateLanguageFormComponent } from './features/customers/candidate/candidate-language-form/candidate-language-form.component';
+import { CandidateSkillFromComponent } from './features/customers/candidate/candidate-skill/candidate-skill-from.component';
+import { CandidateSchoolFormComponent } from './features/customers/candidate/candidate-school-form/candidate-school-form.component';
 import { CandidateGithubComponent } from './features/customers/candidate/candidate-github/candidate-github.component';
 import { CandidateLinkedinComponent } from './features/customers/candidate/candidate-linkedin/candidate-linkedin.component';
 import { CvListComponent } from './features/cv/cv-list/cv-list.component';
+import { CandidateJobExperinceFormComponent } from './features/customers/candidate/candidate-job-experince-form/candidate-job-experince-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: JobAdvertisementListComponent },
