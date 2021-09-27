@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Candidate } from 'src/app/models/candicated/candidate/candidate';
 import { CandidateService } from 'src/app/services/candidate/candidate.service';
 
+
+
 @Component({
   selector: 'app-candidate-list',
   templateUrl: './candidate-list.component.html',
@@ -9,19 +11,20 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 })
 export class CandidateListComponent implements OnInit {
   
-  candidateList : Candidate[]=[]
-
+  candidates : Candidate[]=[]
+  
   page: number = 1;
   itemsPerPage:number=10;
   constructor(private candidateService: CandidateService) { }
 
   ngOnInit(): void {
     this.getCandidates();
+    
   }
 
   getCandidates(){
     this.candidateService.getCandidates().subscribe((data:any)=>{
-      this.candidateList=data.data;
+      this.candidates=data.data;
       console.log(data.data)
     
   })

@@ -1,0 +1,40 @@
+<h1>
+    Something
+  </h1>
+  <h4>aoıgjnadkgnajkdfnbadkjşbgadnlkbnaşdjkbnadşjklbnadj</h4>
+
+  <div class="row">
+    <table>
+
+      <thead>
+        <th>Adayın okul Bilgileri</th>
+        <th>Adayın okuduğu Bölümler</th>
+        <th>Başlangıç yılı</th>
+      </thead>
+      <tbody>
+
+        <td>
+          <tr *ngFor="let item of schoolNames">
+            <td>{{item}}</td>
+          </tr>
+        </td>
+
+        <td>
+          <tr *ngFor="let item of departmentNames">
+            <td>
+              {{item}}
+            </td>
+          </tr>
+        </td>
+
+        <td>
+          <tr *ngFor="let item of candidateSchools">
+            <td>
+              Start year: {{item.startYear}} - Graduation Year :{{item.graduationYear}}
+            </td>
+          </tr>
+        </td>
+
+      </tbody>
+    </table>
+  </div>

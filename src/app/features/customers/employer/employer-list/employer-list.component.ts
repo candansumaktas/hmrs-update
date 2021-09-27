@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employer } from 'src/app/models/employer/employer';
- import { EmployerService } from 'src/app/services/employer/employer.service';
+import { BaseListResponse } from 'src/app/models/listResponse/listResponse';
+import { EmployerService } from 'src/app/services/employer/employer.service';
 
 @Component({
   selector: 'app-employer-list',
@@ -9,7 +10,7 @@ import { Employer } from 'src/app/models/employer/employer';
 })
 export class EmployerListComponent implements OnInit {
 
-  employerList: Employer[]=[]
+  employers: Employer[]=[]
   page: number = 1;
   itemsPerPage:number=10;
   constructor(private employerService : EmployerService) { }
@@ -20,7 +21,7 @@ export class EmployerListComponent implements OnInit {
 
   getEmployers(){
     this.employerService.getEmployer().subscribe((data:any)=>{
-      this.employerList=data.data;
+      this.employers=data.data;
       console.log(data.data)
     
   })

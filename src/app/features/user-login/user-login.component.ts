@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user/user';
 import { UserService } from 'src/app/services/user/user.service';
+import {MenuItem} from 'primeng/api';
+import {ToolbarModule} from 'primeng/toolbar';
 
 @Component({
   selector: 'app-user-login',
@@ -16,6 +18,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./user-login.component.css'],
 })
 export class UserLoginComponent implements OnInit {
+  items: MenuItem[];
   loginForm: FormGroup;
   user: User;
   constructor(
@@ -23,10 +26,85 @@ export class UserLoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loginUserForm();
+    this.items = [
+      {
+          label: 'File',
+          icon: 'pi pi-pw pi-file',
+          items: [{
+                  label: 'New', 
+                  icon: 'pi pi-fw pi-plus',
+                  items: [
+                      {label: 'User', icon: 'pi pi-fw pi-user-plus'},
+                      {label: 'Filter', icon: 'pi pi-fw pi-filter'}
+                  ]
+              },
+              {label: 'Open', icon: 'pi pi-fw pi-external-link'},
+              {separator: true},
+              {label: 'Quit', icon: 'pi pi-fw pi-times'}
+          ]
+      },
+      {
+          label: 'Edit',
+          icon: 'pi pi-fw pi-pencil',
+          items: [
+              {label: 'Delete', icon: 'pi pi-fw pi-trash'},
+              {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+          ]
+      },
+      {
+          label: 'Help',
+          icon: 'pi pi-fw pi-question',
+          items: [
+              {
+                  label: 'Contents',
+                  icon: 'pi pi-pi pi-bars'
+              },
+              {
+                  label: 'Search', 
+                  icon: 'pi pi-pi pi-search', 
+                  items: [
+                      {
+                          label: 'Text', 
+                          items: [
+                              {
+                                  label: 'Workspace'
+                              }
+                          ]
+                      },
+                      {
+                          label: 'User',
+                          icon: 'pi pi-fw pi-file',
+                      }
+              ]}
+          ]
+      },
+      {
+          label: 'Actions',
+          icon: 'pi pi-fw pi-cog',
+          items: [
+              {
+                  label: 'Edit',
+                  icon: 'pi pi-fw pi-pencil',
+                  items: [
+                      {label: 'Save', icon: 'pi pi-fw pi-save'},
+                      {label: 'Update', icon: 'pi pi-fw pi-save'},
+                  ]
+              },
+              {
+                  label: 'Other',
+                  icon: 'pi pi-fw pi-tags',
+                  items: [
+                      {label: 'Delete', icon: 'pi pi-fw pi-minus'}
+                  ]
+              }
+          ]
+      }
+  ];
+
   }
 
   loginUserForm() {
@@ -57,95 +135,9 @@ export class UserLoginComponent implements OnInit {
     );
   }
 
-  // loginUser() {
-  //   let user: User = this.loginForm.value;
+  
 
-  //   this.userService.getLogin(user).subscribe(
-  //     (response: any) => {
+  
+     
 
-  //       let message = response.message
-
-  //       if (message === "systemEmployee Logged in") {
-  //         this.toastrService.success(message);
-  //         localStorage.setItem("systemEmployee", JSON.stringify(response))
-  //         this.router.navigate(['']);
-
-  //       } else if (message === "employer Logged in") {
-  //         this.toastrService.success("Sisteme giriş yapıldı.");
-  //         localStorage.setItem("employer", JSON.stringify(response))
-  //         this.router.navigate(['']);
-
-  //       } else if (response.data.message === "candidate Logged in") {
-  //         this.toastrService.success("Sisteme giriş yapıldı.");
-  //         localStorage.setItem("candidate", JSON.stringify(response))
-  //         this.router.navigate(['']);
-
-  //       } else {
-  //         this.toastrService.error("Kullanıcı bilgileri eksik.")
-  //       }
-  //     }, (responseError) => {
-  //       this.toastrService.error(
-  //         JSON.stringify(responseError.error.data.errors),
-  //         'Doğrulama hatası'
-  //       );
-  //     })
-
-  // }
-
-  // checkLoginEmployer() {
-  //   let user: User = this.loginForm.value;
-  //   this.userService.getLogin(user).subscribe(
-  //     (response: any) => {
-  //       let message = response.message
-  //       if (message === "candidate Logged in") {
-  //         this.toastrService.success("Sisteme giriş yapıldı.");
-  //         localStorage.setItem("candidate", JSON.stringify(response))
-  //         this.router.navigate(['']);
-  //       } else {
-  //         this.toastrService.error("Kullanıcı bilgileri eksik.")
-  //       }
-  //     })
-  // }
-
-  // checkLoginCandidate() {
-  //   let user: User = this.loginForm.value;
-  //   this.userService.getLogin(user).subscribe(
-  //     (response: any) => {
-  //       let message = response.message
-  //       if (message === "employer Logged in") {
-  //         this.toastrService.success("Sisteme giriş yapıldı.");
-  //         localStorage.setItem("employer", JSON.stringify(response))
-  //         this.router.navigate(['']);
-  //       } else {
-  //         this.toastrService.error("Kullanıcı bilgileri eksik.")
-  //       }
-  //     })
-  // }
-
-  // checkLoginSystemPersonel() {
-  //   let user: User = this.loginForm.value;
-  //   this.userService.getLogin(user).subscribe(
-  //     (response: any) => {
-  //       let message = response.message
-  //       if (message === "systemEmployee Logged in") {
-  //         this.toastrService.success("Sisteme giriş yapıldı.");
-  //         localStorage.setItem("systemEmployee", JSON.stringify(response))
-  //         this.router.navigate(['']);
-  //       } else {
-  //         this.toastrService.error("Kullanıcı bilgileri eksik.")
-  //       }
-  //     })
-  // }
-
-  // loginUser() {
-  //   if (this.loginForm.valid) {
-  //     this.checkLoginEmployer()
-  //     this.checkLoginEmployer()
-  //     this.checkLoginSystemPersonel()
-  //     this.router.navigate([""])
-  //   }
-  //   else {
-  //     this.toastrService.error("Hata")
-  //   }
-  // }
 }

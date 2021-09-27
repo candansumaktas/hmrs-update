@@ -36,8 +36,23 @@ export class JobAdvertisementService {
 
   }
   
-  closeJobAdvertisement(id: number, active:boolean):Observable<JobAdvertisementResponse>{
-    return this.httpClient.put<JobAdvertisementResponse>(this.apiUrl+"/update/activation?jobAdvId="+id+"&status="+active,{id,active});
+  closeJobAdvertisement(jobAdvertisement: JobAdvertisement): Observable<JobAdvertisement> {
+    return this.httpClient.put<JobAdvertisement>(this.apiUrl +'/update/activation?jobAdvId=' +jobAdvertisement.id +'&status=' +!jobAdvertisement.active,jobAdvertisement);
   }
+
+  getUnverifiedJobList(sortDirection:number):Observable<JobAdvertisementResponse>{
+    return this.httpClient.get<JobAdvertisementResponse>(this.apiUrl+"/get/unverified?sortDirection="+sortDirection);
+
+  }
+
+  changeVerificationOfJob(jobAdvertisement: JobAdvertisement): Observable<JobAdvertisement> {
+    return this.httpClient.put<JobAdvertisement>(this.apiUrl +'/update/verification?jobAdvId=' +jobAdvertisement.id +'&status=' +!jobAdvertisement.verified,jobAdvertisement);
+  }
+
+  makeUnverified(jobAdvertisement: JobAdvertisement): Observable<JobAdvertisement> {
+    return this.httpClient.put<JobAdvertisement>(this.apiUrl +'/update/verification?jobAdvId=' +jobAdvertisement.id +'&status=' +!jobAdvertisement.verified,jobAdvertisement);
+  }
+
+  
   
 }

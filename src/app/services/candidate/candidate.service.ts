@@ -29,13 +29,23 @@ export class CandidateService {
   }
 
   getCandidateById(id: number): Observable<CandidateResponse> {
-    return this.httpClient.get<CandidateResponse>(this.apiUrl + '/get/byId?candId=' + id);
-  }
-  addGithub(candidate: Candidate, githubLink: String): Observable<Candidate> {
-    return this.httpClient.put<Candidate>(this.apiUrl + '/update/githubAccount?candId=' + candidate.id + '&githubAccount=' + githubLink, candidate);
+    return this.httpClient.get<CandidateResponse>(
+      this.apiUrl + '/get/byId?candId=' + id
+    );
   }
 
-  addLinkedin(candidate: Candidate, linkedinAccount: String): Observable<Candidate> {
-    return this.httpClient.put<Candidate>(this.apiUrl + '/update/linkedinAccount?candId=' + candidate.id + '&linkedinAccount=' + linkedinAccount, candidate);
+  addGithub(candidate:Candidate, githubLink:String): Observable<Candidate> {
+    return this.httpClient.put<Candidate>(
+      this.apiUrl +'/update/githubAccount?candId=' + candidate.id + '&githubAccount=' + githubLink, candidate);
   }
+
+  addLinkedin(candidate:Candidate, linkedinAccount:String): Observable<Candidate> {
+    return this.httpClient.put<Candidate>(
+      this.apiUrl +'/update/githubAccount?candId=' + candidate.id + '&linkedinAccount=' + linkedinAccount, candidate);
+  }
+
+
+
+
+
 }

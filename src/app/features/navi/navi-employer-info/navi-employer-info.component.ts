@@ -11,13 +11,16 @@ export class NaviEmployerInfoComponent implements OnInit {
 
   employer:Employer;
   constructor(private router: Router) { }
-   ngOnInit(): void {
+
+  ngOnInit(): void {
   }
-   signOut(){
+
+  signOut(){
     localStorage.clear()
     this.router.navigate(['home']);
   }
-   getEmployerInfo():Employer{
+
+  getEmployerInfo():Employer{
     this.employer=JSON.parse(localStorage.getItem("user"))
       return this.employer;
       }

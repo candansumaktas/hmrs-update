@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Candidate } from 'src/app/models/candicated/candidate/candidate';
 
 @Component({
@@ -9,17 +8,19 @@ import { Candidate } from 'src/app/models/candicated/candidate/candidate';
 })
 export class NaviCandidateInfoComponent implements OnInit {
 
-  
   candidate:Candidate
-  constructor(private router:Router) { }
-   ngOnInit(): void {
+  constructor() { }
+
+  ngOnInit(): void {
   }
-   signOut(){
+
+  signOut(){
     localStorage.clear()
-    this.router.navigate(['home']);
   }
-   getCandidateInfo():Candidate{
-    this.candidate=JSON.parse(localStorage.getItem("candidate"))
+  
+  getCandidateInfo():Candidate{
+    let value=JSON.parse(localStorage.getItem("candidate"))
+    this.candidate=value.data
     return this.candidate;
     }
   }

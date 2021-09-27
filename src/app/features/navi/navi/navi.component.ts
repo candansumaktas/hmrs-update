@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user/user';
-  
+
 @Component({
   selector: 'app-navi',
   templateUrl: './navi.component.html',
@@ -8,15 +10,25 @@ import { User } from 'src/app/models/user/user';
 })
 export class NaviComponent implements OnInit {
 
-  constructor( ) { }
+
+
+
+  constructor(private toastrService: ToastrService) { }
 
   ngOnInit(): void {
 
   }
- 
+
+  checkUser(): boolean {
+    if (localStorage.getItem('user')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   checkEmployer(): boolean {
-    if (localStorage.getItem('user')) {
+    if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
       if (value.includes("employer")) {
@@ -30,7 +42,7 @@ export class NaviComponent implements OnInit {
   }
 
   checkCandidate(): boolean {
-    if (localStorage.getItem('user')) {
+    if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
       if (value.includes("candidate")) {
@@ -44,7 +56,7 @@ export class NaviComponent implements OnInit {
   }
 
   checkSystemEmployee(): boolean {
-    if (localStorage.getItem('user')) {
+    if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
       if (value.includes("systemEmployee")) {

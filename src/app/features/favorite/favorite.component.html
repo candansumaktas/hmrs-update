@@ -1,0 +1,45 @@
+<table  class="table" >
+    <thead *ngIf="favorites.length>0; else thenBlock">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Employer Id</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Position Title</th>
+        <th scope="col">Number of Open Positions</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Work Model</th>
+        <th scope="col">Work Time</th>
+       </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let favorite of favorites">
+        <th scope="row">{{favorite.jobAdvertisement.employer.companyName}}</th>
+        <td><a></a></td>
+        <td>{{favorite.jobAdvertisement.employer.companyName}}</td>
+        <td>{{favorite.jobAdvertisement.position.title}}</td>
+        <td>{{favorite.jobAdvertisement.openPositions}}</td>
+        <td>{{favorite.jobAdvertisement.createdAt | date :'dd/MM/yyyy'}}</td>
+        <td>{{favorite.jobAdvertisement.deadline  | date: 'dd/MM/yyyy'}}</td>
+        <td>{{favorite.jobAdvertisement.workModel}}</td>
+        <td>{{favorite.jobAdvertisement.workTime}}</td>
+       
+        <td><button class="btn btn-danger btn-sm" (click)="removeFromFavorite(favorite.jobAdvertisement)" >Favorilerden çıkar</button></td>
+       </tr>
+    </tbody>
+
+    <ng-template #thenBlock> 
+
+        <div class="alert alert-info">
+
+          Sepetinde ürün bulunmamaktadır.
+
+        </div>
+      </ng-template>
+
+
+
+</table>
+
+
+ 

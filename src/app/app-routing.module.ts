@@ -6,53 +6,65 @@ import { CandidateSignComponent } from './features/sign/candidate-sign/sign.comp
 import { PositionListComponent } from './features/position/position-list/position-list.component';
 import { PositionAddComponent } from './features/position/position-add/position-add.component';
 import { UserLoginComponent } from './features/user-login/user-login.component';
-import { HomeComponent } from './features/home/home.component';
-import { JobAdvertisementComponent } from './features/job-advertisement/job-advertisement-add/job-advertisement.component';
-import { JobAdvertisementListComponent } from './features/job-advertisement/job-advertisement-list/job-advertisement-list.component';
-import { JobAdvertisementListByEmployerComponent } from './features/job-advertisement/job-advertisement-list-by-employer/job-advertisement-list-by-employer.component';
+ import { HomeComponent } from './features/home/home.component';
+import { JobAdvertisementComponent } from './job-advertisement/job-advertisement-add/job-advertisement.component';
+import { JobAdvertisementListComponent } from './job-advertisement/job-advertisement-list/job-advertisement-list.component';
+import { JobAdvertisementListByEmployerComponent } from './job-advertisement/job-advertisement-listByEmployer/job-advertisement-list-by-employer/job-advertisement-list-by-employer.component';
 import { EmployerSignComponent } from './features/sign/employer-sign/employer-sign.component';
 import { JobAdvertisementGuard } from './guards/job-advertisement/job-advertisement.guard';
+import { CandidateSchoolFormComponent } from './features/customers/candidate/candidate-school/candidate-school-form/candidate-school-form.component';
+import { CandidateSkillFromComponent } from './features/customers/candidate/candidate-skill/candidate-skill-from/candidate-skill-from.component';
+import { CandidateLanguageFormComponent } from './features/customers/candidate/candidate-language/candidate-language-form/candidate-language-form.component';
+import { CandidateJobExperinceFormComponent } from './features/customers/candidate/candidate-jobExperince/candidate-job-experince-form/candidate-job-experince-form.component';
 import { CvAddComponent } from './features/cv/cv-add/cv-add.component';
-import { PositionAddGuard } from './guards/position-add/position-add.guard';
-import { ListCandidatesGuard } from './guards/list-candidates/list-candidates.guard';
-import { ListEmployersGuard } from './guards/list-employer/list-employers.guard';
-import { ListPositionsGuard } from './guards/list-positions/list-positions.guard';
-import { CvAddGuard } from './guards/cv-add/cv-add.guard';
-import { CandidateImageComponent } from './features/customers/candidate/candidate-image/candidate-image.component';
-import { CandidateLanguageFormComponent } from './features/customers/candidate/candidate-language-form/candidate-language-form.component';
-import { CandidateSkillFromComponent } from './features/customers/candidate/candidate-skill/candidate-skill-from.component';
-import { CandidateSchoolFormComponent } from './features/customers/candidate/candidate-school-form/candidate-school-form.component';
-import { CandidateGithubComponent } from './features/customers/candidate/candidate-github/candidate-github.component';
-import { CandidateLinkedinComponent } from './features/customers/candidate/candidate-linkedin/candidate-linkedin.component';
-import { CvListComponent } from './features/cv/cv-list/cv-list.component';
-import { CandidateJobExperinceFormComponent } from './features/customers/candidate/candidate-job-experince-form/candidate-job-experince-form.component';
 
+import { ImageAddComponent } from './features/customers/candidate/image/image-add/image-add.component';
+import { CvAddGuard } from './guards/cv-add/cv-add.guard';
+import { PositionAddGuard } from './guards/position-add/position-add.guard';
+import { CandidateWebsiteComponent } from './features/customers/candidate/candidate-website/candidate-website/candidate-website.component';
+import { CandidateLinkedinAddComponent } from './features/customers/candidate/candidate-linkedinAcount-add/candidate-linkedin-add/candidate-linkedin-add.component';
+import { CandidateCvViewComponent } from './features/customers/candidate/candidate-Cv-view/candidate-cv-view/candidate-cv-view.component';
+import { CvViewComponent } from './features/cv/cv-view/cv-view/cv-view.component';
+import { UnverifiedJobListComponent } from './job-advertisement/job-advertisement-unverifiedJobList/unverified-job-list/unverified-job-list.component';
+import { UnverifiedJobListGuard } from './guards/job-advertisement/unverified-job-list/unverified-job-list.guard';
+import { FavoriteComponent } from './features/favorite/favorite.component';
+import { SchoolUpdateComponent } from './features/customers/candidate/candidate-school/school-update/school-update.component';
+ 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: JobAdvertisementListComponent },
-  { path: "home", pathMatch: 'full', component: HomeComponent },
+  { path: "home", pathMatch: 'full', component:  HomeComponent},
   { path: "sign", component: CandidateSignComponent },
   { path: "login", component: UserLoginComponent },
   { path: "candidate-sign", component: CandidateSignComponent },
-  { path: "employer-sign", component: EmployerSignComponent },
-  { path: "positions-add", component: PositionAddComponent, canActivate: [PositionAddGuard] },
-  { path: "list-employers", component: EmployerListComponent, canActivate: [ListEmployersGuard] },
-  { path: "list-candidates", component: CandidateListComponent, canActivate: [ListCandidatesGuard] },
-  { path: "list-positions", component: PositionListComponent, canActivate: [ListPositionsGuard] },
-  { path: "job-advertisement-add", component: JobAdvertisementComponent, canActivate: [JobAdvertisementGuard] },
-  { path: "job-advertisement-list", component: JobAdvertisementListComponent },
-  { path: "cv-add", component: CvAddComponent, canActivate: [CvAddGuard] },
-  { path: "job-advertisement-list/jobAdvertisements/:employerId", component: JobAdvertisementListByEmployerComponent },
-  { path: "image", component: CandidateImageComponent },
-  { path: "language", component: CandidateLanguageFormComponent },
-  { path: "jobExperience", component: CandidateJobExperinceFormComponent },
-  { path: "skill", component: CandidateSkillFromComponent },
-  { path: "school", component: CandidateSchoolFormComponent },
-  { path: "github", component: CandidateGithubComponent },
-  { path: "linkedin", component: CandidateLinkedinComponent },
-  { path: "cv-list", component: CvListComponent }
+  {path:"employer-sign", component:EmployerSignComponent},
+  { path: "positions-add", component: PositionAddComponent, canActivate: [PositionAddGuard] }, 
+  { path: "list-employers", component: EmployerListComponent,canActivate: [PositionAddGuard]  },  
+  { path: "list-candidates", component: CandidateListComponent},  
+  { path: "list-positions", component: PositionListComponent },
+  {path:"job-advertisement-add", component: JobAdvertisementComponent,canActivate: [JobAdvertisementGuard] },
+  {path:"job-advertisement-list",component: JobAdvertisementListComponent},
+  {path:"jobAdvertisementList/jobAdvertisements/:employerId", component: JobAdvertisementListByEmployerComponent},
+  {path:"cv",component:CvAddComponent, canActivate: [CvAddGuard]},
+  {path:"job-advertisement-list/jobAdvertisements/:employerId",component: JobAdvertisementListByEmployerComponent},
+  {path:"image",component:ImageAddComponent},
+  {path:"language", component:CandidateLanguageFormComponent},
+  {path: "jobExperience", component:CandidateJobExperinceFormComponent},
+  {path: "skill", component:CandidateSkillFromComponent},
+  {path: "school", component:CandidateSchoolFormComponent},
+  {path: "github",component:CandidateWebsiteComponent},
+  {path:"linkedin", component: CandidateLinkedinAddComponent},
+  {path:"list-candidates/cv-view/:candidateId", component:CandidateCvViewComponent},
+  {path:"cv-view", component:CvViewComponent},
+  {path:"unverifiedJobList", component:UnverifiedJobListComponent, canActivate: [UnverifiedJobListGuard]},
+  {path:"favorites", component:FavoriteComponent},
+  {path:"school-update", component:SchoolUpdateComponent}
 
 
-];
+
+
+
+
+  
+ ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

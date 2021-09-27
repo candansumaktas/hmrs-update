@@ -3,7 +3,7 @@
     <li  class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Hoşgeldiniz {{getEmployerInfo().companyName}}
+            Hoşgeldin {{getEmployerInfo().companyName}}
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
@@ -11,11 +11,9 @@
             </li>
             <li><a  class="dropdown-item" routerLink="list-candidates">List Candidates</a></li>
             <li><a  class="dropdown-item" routerLink="list-positions">List Positions</a></li>
-            <li><a  class="dropdown-item" routerLink="positions-add">Add Positions</a></li>
-            <li><a  class="dropdown-item" routerLink="job-advertisement-list">Job Advertisement List</a></li>
-             
-            
             <li class="nav-item"><a class="nav-link" routerLink="job-advertisement-add">Job Advertisement Add</a></li>
+            <li><a class="dropdown-item" routerLink="job-advertisement-list">List Active Job Advertisement</a></li>
+            <li><a  class="dropdown-item" routerLink="unverifiedJobList">List Unverified jobAdvertisement List</a></li>
             
 
             <li><a  class="dropdown-item" (click)="signOut()" >Çıkış yap</a></li>

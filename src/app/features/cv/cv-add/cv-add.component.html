@@ -1,26 +1,48 @@
-  <div class="content">
+<div class="content">
   <div class="card">
     <div class="card-body">
       <div class="card-header">
-        <h5>Create Cv</h5>
+        <h5>Add Cv</h5>
       </div>
-       <app-candidate-school-form></app-candidate-school-form>
-      <!-- <app-candidate-job-experince-form></app-candidate-job-experince-form> -->
+
+      <div class="content">
+        <div class="card">
+            <div class="card-body">
+    
+                <form [formGroup]="cvAddForm">
+                    <div class="mb-3">
+                      <label>CV Title</label>
+                      <input type="text" placeholder="Title" formControlName="title" class="form-control" />
+                
+                      <label>Cover Letter</label>
+                      <input type="text" placeholder="Cover Letter" formControlName="coverLetter" class="form-control" />
+                    </div>
+                </form>       
+        </div>
+    </div>
+
+  </div>
+
+      
+ 
+      <app-candidate-school-form></app-candidate-school-form>
+      <app-candidate-job-experince-form></app-candidate-job-experince-form>
       <app-candidate-language-form></app-candidate-language-form>
       <app-candidate-skill-from></app-candidate-skill-from>
-      <app-candidate-image></app-candidate-image>
-      <app-candidate-github></app-candidate-github>
-      <app-candidate-linkedin></app-candidate-linkedin>
-       <div class="card-footer">
-        <button
-          [disabled]="!cvAddForm.valid" (click)="cvAdd()" class="btn btn-primary">
+      <app-image-add></app-image-add>
+      <app-candidate-website></app-candidate-website>
+      <app-candidate-linkedin-add></app-candidate-linkedin-add>
+
+      <div class="card-footer">
+        <button [disabled]="!cvAddForm.valid" (click)="cvAdd()" class="btn btn-primary">
           Add
         </button>
       </div>
-     </div>
-  </div>
-</div>  
 
+
+    </div>
+  </div>
+</div>
 
 
 

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PositionAddGuard implements CanActivate {
+
   constructor(
     private toastrService:ToastrService,
     private router:Router,
@@ -19,23 +20,27 @@ export class PositionAddGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(JSON.parse(localStorage.getItem("user"))){
       
-      let value = JSON.parse(localStorage.getItem("user"));
-      console.log(value)
-      let message = value.message
-      console.log(message)
-      if(message.includes('systemEmployee')){
-        return true;
-     }else{
-      this.toastrService.error("öncelikle giriş yapmalısınız")
-      this.router.navigate(["login"])
-      return false;
-     }
-        
-      }else{
+        let value = JSON.parse(localStorage.getItem("user"));
+        console.log(value)
+        let message = value.message
+        console.log(message)
+        if(message.includes('systemEmployee')){
+          return true;
+       }else{
         this.toastrService.error("öncelikle giriş yapmalısınız")
         this.router.navigate(["login"])
         return false;
-      }
-      
+       }
+          
+        }else{
+          this.toastrService.error("öncelikle giriş yapmalısınız")
+          this.router.navigate(["login"])
+          return false;
+        }
+        
+    }
+
+     
   }
-}
+  
+

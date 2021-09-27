@@ -1,0 +1,29 @@
+<div class="container w-75 mt-3">
+    <div class="table-header">
+      <h5>Add Linkedin Account</h5>
+    </div>
+  
+    <form [formGroup]="candidateLinkedinForm" class="m-3">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Linkedin Account</label>
+          <input
+            class="form-control"
+            type="text"
+            id="linkedinAccount"
+            formControlName="linkedinAccount"
+            placeholder="Please enter your github account"
+          />
+           
+        </div>
+      </div>
+  
+      <button
+        [disabled]="!candidateLinkedinForm.valid"
+        class="btn btn-primary my-2"
+        (click)="candidateLinkedinAdd()"
+      >
+        Add Linkedin account
+      </button>
+    </form>
+  </div>

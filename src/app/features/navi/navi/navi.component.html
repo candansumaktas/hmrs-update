@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fab895af;">
     <div class="container-fluid">
       <a class="navbar-brand text-primary" href="/"><i class="bi bi-person-lines-fill" style="font-size: 2rem"></i><span
           class="ms-2" style="font-size: 1.5rem"><b>SV</b>career</span></a>
@@ -19,7 +19,7 @@
             
             <li><a class="dropdown-item" routerLink="list-positions">List Positions</a></li>
             <li class="nav-item">
-              <a class="dropdown-item"  routerLink="cv-add">Add CV</a>
+              <a class="dropdown-item"  routerLink="cv">Add CV</a>
             </li>
             <li><a class="dropdown-item" routerLink="job-advertisement-list">List Active Job Advertisement</a></li>
             <li>
@@ -70,96 +70,114 @@
 
 
 
-<!-- 
-<header>
+
+
+<!-- <header>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand text-primary" href="/"
-        ><i class="bi bi-person-lines-fill" style="font-size: 2rem"></i
-        ><span class="ms-2" style="font-size: 1.5rem"><b>SV</b>KARİYER</span></a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <a class="navbar-brand text-primary" href="/"><i class="bi bi-person-lines-fill" style="font-size: 2rem"></i><span
+          class="ms-2" style="font-size: 1.5rem"><b>SV</b>KARÄ°YER</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="me-auto">
-          
         </div>
-        <div class="flex">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Lists
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li class="nav-item">
-                <a class="dropdown-item"  routerLink="job-advertisement-list">List Active Job Advertisement</a>
-              </li>
-              <li>
-                <a class="dropdown-item" routerLink="list-positions">List Positions</a>
-              </li>
-              <li class="nav-item">
-                <a class="dropdown-item"  routerLink="jobAdvertisementListByDate">List Active Job Advertisement By Date</a>
-              </li>
-              <li class="nav-item">
-                <a class="dropdown-item"  routerLink="jobAdvertisementListEmployer">List Active Job Advertisement By Employer</a>
-              </li>
-              <li class="nav-item">
-                <a class="dropdown-item"  routerLink="cv">Add CV</a>
-              </li>
-            </ul>
-          </li>
-        </div>
-
-        <ul>
-          <div *ngIf="checkEmployer(); else thenBlock">
-            <app-navi-employer-info></app-navi-employer-info>
-          </div>
-          <ng-template #thenBlock>
-            <div *ngIf="checkSystemEmployee(); else elseBlock">
-              <app-navi-system-employee-info></app-navi-system-employee-info>
-            </div>
-          </ng-template>
-          <div
-            class="collapse navbar-collapse navbar-nav me-auto mb-2 mb-lg-0"
-            id="navbarSupportedContent"
-          >
-            <ng-template #elseBlock>
-              <app-navi-sign></app-navi-sign>
-              <li>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  routerLink="login"
-                >
-                  Login
-                </button>
-              </li>
-            </ng-template>
-          </div>
-        </ul>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Lists
+          </button>
+          <ul class="dropdown-menu">
+            
+            <li><a class="dropdown-item" routerLink="list-positions">List Positions</a></li>
+            <li class="nav-item">
+              <a class="dropdown-item"  routerLink="cv">Add CV</a>
+            </li>
+            <li><a class="dropdown-item" routerLink="job-advertisement-list">List Active Job Advertisement</a></li>
+            <li><a class="dropdown-item" routerLink="image">Upload image</a></li>
+            <li><a class="dropdown-item" routerLink="jobExperience">Job experience add</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item"> </a></li>
+          </ul>
+        </div>    
       </div>
+
+      <li class="list-group list-group-horizontal">
+        <div *ngIf="checkEmployer(); else thenBlock">
+          <app-navi-employer-info></app-navi-employer-info>
+        </div>
+        <ng-template #thenBlock>
+          <div *ngIf="checkSystemEmployee(); else elseBlock">
+            <app-navi-system-employee-info></app-navi-system-employee-info>
+          </div>
+        </ng-template>
+        <div class="collapse navbar-collapse navbar-nav me-auto mb-2 mb-lg-0" id="navbarSupportedContent">
+          <ng-template #elseBlock>
+            <app-navi-sign></app-navi-sign>
+            <button type="button" class="btn btn-primary" routerLink="login">
+              Login
+            </button>
+          </ng-template>
+        </div>
     </div>
+
   </nav>
-</header> -->
+</header>
 
-<!-- <div *ngIf="checkUser(); else elseBlock">
-  <app-navi-employer-info></app-navi-employer-info>
-</div>
-<div class=" collapse navbar-collapse navbar-nav me-auto mb-2 mb-lg-0" id="navbarSupportedContent">
-  <ng-template #elseBlock>
-    <app-navi-sign></app-navi-sign>
-    <li><button type="button" class="btn btn-primary" routerLink="login">Login</button></li>
-  </ng-template>
 
-</div> -->
+ -->
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Hrms</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav> -->

@@ -1,0 +1,29 @@
+<div class="container w-75 mt-3">
+    <div class="table-header">
+      <h5>Add Github Account</h5>
+    </div>
+  
+    <form [formGroup]="candidateGithubForm" class="m-3">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Github Account</label>
+          <input
+            class="form-control"
+            type="text"
+            id="githubAccount"
+            formControlName="githubAccount"
+            placeholder="Please enter your github account"
+          />
+           
+        </div>
+      </div>
+  
+      <button
+        [disabled]="!candidateGithubForm.valid"
+        class="btn btn-primary my-2"
+        (click)="candidateGithubAdd()"
+      >
+        Add github account
+      </button>
+    </form>
+  </div>

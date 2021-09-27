@@ -1,0 +1,28 @@
+<h1>
+    Something
+  </h1>
+  <h6>aoıgjnadkgnajkdfnbadkjşbgadnlkbnaşdjkbnadşjklbnadj</h6>
+
+  <div class="row">
+    <table>
+      <thead>
+        <th>Çalıştığı Pozisyon isimleri</th>
+        <th>Çalıştığı Yıllar</th>
+      </thead>
+      <tbody>
+
+        <td>
+          <tr *ngFor="let item of positionTitles">
+            <td>{{item}}</td>
+          </tr>
+        </td>
+        <td>
+          <tr *ngFor="let item of candidateJobExperiences">
+            <td>
+              StartYear: {{item.startYear}}- QuitYear: {{item.quitYear}}
+            </td>
+          </tr>
+        </td>
+      </tbody>
+    </table>
+  </div>
