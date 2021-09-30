@@ -1,15 +1,23 @@
 
-  <h4>Language Add </h4>
+  
  
 
 <div class="card-header">
 
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#languageAdd">
- 
-   Add 
- 
+  
+  <div class="cv-school-img">
+    <img src="https://th.bing.com/th/id/R.eb6804c52780c01afa32961e79e35d86?rik=moLrpQ3p%2fXEzng&riu=http%3a%2f%2fwww.tipperarylibraries.ie%2fwp-content%2fuploads%2f2016%2f11%2fmain-fe78672c.png&ehk=WCPuDRzzwbaTeBMeHqMwauKcRQeX6BoJuIRcckfN6ro%3d&risl=&pid=ImgRaw&r=0" width="100%">
+</div>
+
+
+
+ <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button type="button" class="btn btn-primary me-md-2" data-bs-toggle="modal" data-bs-target="#languageAdd">
+    Add 
 </button>
+ 
+</div>
 <!-- Modal -->
 <div class="modal fade" id="languageAdd" tabindex="-1" aria-labelledby="languageAdd" aria-hidden="true">
 <div class="modal-dialog">
@@ -24,7 +32,7 @@
           <div class="card-body">
             <form [formGroup]="candidateLanguageForm">
               <div class="mb-3">
-                <label>Add Language</label>
+                
                 <select class="form-select" formControlName="languageId">
                   <option value="" disabled>Languages</option>
                   <option *ngFor="let language of languages" [ngValue]="language.id">
@@ -33,9 +41,9 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label>Language Level</label>
+                
                 <select class="form-select" formControlName="languageLevel">
-                  <option>seçiniz</option>
+                  <option>Select Language Level</option>
                   <option *ngFor="let languageLevel of languageLevels">{{languageLevel.level}}</option>
                 </select>
               </div>

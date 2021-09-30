@@ -1,8 +1,8 @@
-<table  class="table" >
+<table  class="table table-warning" >
     <thead *ngIf="favorites.length>0; else thenBlock">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Employer Id</th>
+        
+        <th scope="col" >Employer Id</th>
         <th scope="col">Company Name</th>
         <th scope="col">Position Title</th>
         <th scope="col">Number of Open Positions</th>
@@ -10,29 +10,35 @@
         <th scope="col">Deadline</th>
         <th scope="col">Work Model</th>
         <th scope="col">Work Time</th>
+        <th scope="col">Remove </th>
        </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let favorite of favorites">
-        <th scope="row">{{favorite.jobAdvertisement.employer.companyName}}</th>
-        <td><a></a></td>
-        <td>{{favorite.jobAdvertisement.employer.companyName}}</td>
-        <td>{{favorite.jobAdvertisement.position.title}}</td>
-        <td>{{favorite.jobAdvertisement.openPositions}}</td>
-        <td>{{favorite.jobAdvertisement.createdAt | date :'dd/MM/yyyy'}}</td>
-        <td>{{favorite.jobAdvertisement.deadline  | date: 'dd/MM/yyyy'}}</td>
-        <td>{{favorite.jobAdvertisement.workModel}}</td>
-        <td>{{favorite.jobAdvertisement.workTime}}</td>
+      <tr *ngFor="let favorite of favorites">
+        <td>{{favorite.employer.id}}</td>
+        <td>{{favorite.employer.companyName}}</td>
+     
+        <td>{{favorite.position.title}}</td>
+        <td>{{favorite.openPositions}}</td>
+        <td>{{favorite.createdAt | date :'dd/MM/yyyy'}}</td>
+        <td>{{favorite.deadline  | date: 'dd/MM/yyyy'}}</td>
+        <td>{{favorite.workModel}}</td>
+        <td>{{favorite.workTime}}</td>
+        <td class="text-center" (click)="removeFromFavorite(favorite)" style="cursor:pointer"><a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16"  height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+          </svg>
+        </a></td>
+        
+      </tr>
        
-        <td><button class="btn btn-danger btn-sm" (click)="removeFromFavorite(favorite.jobAdvertisement)" >Favorilerden çıkar</button></td>
-       </tr>
     </tbody>
 
     <ng-template #thenBlock> 
 
         <div class="alert alert-info">
 
-          Sepetinde ürün bulunmamaktadır.
+          There are no ads in favorites.
 
         </div>
       </ng-template>

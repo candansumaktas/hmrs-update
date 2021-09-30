@@ -57,7 +57,7 @@ export class ImageAddComponent implements OnInit {
       this.imageService.upload(formData, this.getUserId()).subscribe(
          (response: any) => {
          console.log(this.imageAddForm.value);
-        this.toastrService.success(response.message, 'image eklendi');
+        this.toastrService.success(response.message, 'image add');
         },
         (responseError) => {
           this.toastrService.error(

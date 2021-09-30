@@ -25,6 +25,8 @@ export class CvAddComponent implements OnInit {
   candidateLanguageIds: number[] = [];
   candidateSchoolIds: number[] = [];
   candidateSkillIds: number[] = [];
+
+  
   constructor(private cvService: CvService, private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private router: Router,

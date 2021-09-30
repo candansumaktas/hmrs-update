@@ -26,11 +26,11 @@ export class SchoolUpdateComponent implements OnInit {
   school: School[] = []
   schoolNames: string[] = []
   user: any;
-  candidateSchoolId: any;
+  schoolIds: number[]=[]
+  candidateSchoolId: number[]=[]
   candidate: Candidate;
-
-  selectedLevel: number
-
+  selectedLevel: any;
+  
   constructor(
     private formBuilder: FormBuilder,
     private candidateSchoolService: CandidateSchoolService,
@@ -49,25 +49,22 @@ export class SchoolUpdateComponent implements OnInit {
     this.getCandidateSchools();
   }
 
-
-
   getCandidatesById() {
     this.candidateService.getCandidateById(this.getUserId()).subscribe((data: any) => {
       this.candidate = data.data;
+      console.log(data.data)
     })
   }
 
   createSchoolUpdateForm() {
     this.candidateSchoolUpdateForm = this.formBuilder.group({
-
-
       schoolId: ['', Validators.required],
     });
   }
 
   getSchools() {
     this.schoolService.getSchool().subscribe((data: any) => {
-
+      
       this.schools = data.data;
     });
   }
@@ -79,14 +76,9 @@ export class SchoolUpdateComponent implements OnInit {
       // this.department= response.data.candidateSchools.map(o=>o.department)
       this.schoolNames = this.school.map(o => o.name)
       //  this.departmentNames=this.department.map(o=>o.name)
-      this.candidateSchoolId = response.data.candidateSchools.map(o => o.id)
-
-  
-       // grab the Array item which matchs the id "2"
-       var item = this.candidateSchoolId.find((item: { id: number; }) => item.id === 2);
-       
-       // print
-       console.log(item.name);
+      this.candidateSchoolId = response.data.candidateSchools.map(o=>o.id)
+     this.schoolIds=this.school.map(o => o.id)
+      
 
     });
   }
@@ -103,29 +95,47 @@ export class SchoolUpdateComponent implements OnInit {
   }
 
   updateSchoool() {
-
-
-    if (this.candidateSchoolUpdateForm.valid) {
+     
+      if (this.candidateSchoolUpdateForm.valid) {
       localStorage.getItem("user")
-      let schoolModel = Object.assign({}, this.candidateSchoolUpdateForm.value);
-      this.candidateSchoolService.updateSchool( this.candidateSchoolUpdateForm.value, schoolModel).subscribe(
-        (response: any) => {
-          this.router.navigate(['cv-view']);
+      this.candidateSchoolService.updateSchool(this.candidateSchoolUpdateForm.value.schoolId,this.candidateSchoolId[0]).subscribe(
+         (response: any) => {
+           
           this.toastrService.success(response.message, 'Okul bilgileri güncellendi');
         },
         (responseError) => {
           this.toastrService.error(
             JSON.stringify(responseError.error.data.errors),
-            'Doğrulama hatası');
-        });
+            'Doğrulama hatası');});
     } else {
       this.toastrService.error('Bilgileri eksik girdiniz.');
     }
 
   }
 
-  selected() {
-     console.log(this.selectedLevel)
+  selected(){
+    
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+      
+     
+     
+     
+      
+       if(this.selectedLevel==response.data.candidateSchools.map(o => o.school).map(o=>o.id)){
+         
+         console.log(this.selectedLevel)
+ 
+      
+
+     }
+
+    });
+    
+    
+   
+
+    // console.log(this.selectedLevel)
   }
 
+  
 }

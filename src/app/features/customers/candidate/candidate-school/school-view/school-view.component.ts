@@ -14,15 +14,16 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 export class SchoolViewComponent implements OnInit {
 
  
-
+  user: any;
   candidates: Candidate[]=[]
   candidate: Candidate;
-  
-  school:School[]=[]
-  department:Department[]=[]
-  schoolNames:string[]=[]
-  departmentNames:String[]=[]
-  candidateSchools:CandidateSchool[]=[]
+  candidateSchools: any;
+  // school:School[]=[]
+  // department:Department[]=[]
+  // schoolNames:string[]=[]
+  // departmentNames:String[]=[]
+  // candidateSchools:CandidateSchool[]=[]
+
   
   constructor(
     private candidateService: CandidateService,
@@ -30,30 +31,33 @@ export class SchoolViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      this.getCandidateSchools(params["candidateId"])
-    })
+  this.getCandidatesById()
+  this.getUserId()
+  this.getCandidateSchools()
   }
-  getCandidatesById(candidateId: number){
-    this.candidateService.getCandidateById(candidateId).subscribe((data:any)=>{
+
+  getCandidatesById(){
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((data:any)=>{
       this.candidate=data.data;
       console.log(this.candidate)
     
   })
   }
-  
-  getCandidateSchools(candidateId:number){
-    this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
+
+  getCandidateSchools(){
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
         
-      this.candidateSchools=response.data.candidateSchools
+      this.candidate = response.data;
+      this.candidateSchools = response.data.candidateSchools;
           
-          this.school= response.data.candidateSchools.map(o=>o.school)
-          this.department= response.data.candidateSchools.map(o=>o.department)
-         this.schoolNames=this.school.map(o=>o.name)
-         this.departmentNames=this.department.map(o=>o.name)
           
       });
      
   }
 
+   getUserId(): number {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    return this.user.data.id;
+  }
+  
 }

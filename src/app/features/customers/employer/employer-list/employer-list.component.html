@@ -49,6 +49,12 @@
                 <td>
                     <span>{{employer.email}}</span>
                 </td>
+                <td *ngIf="employer.updateVerified===false">
+                    <button  (click)="ApplyChanges(employer)" class="btn btn-primary">
+                        Onayla
+                    </button> 
+                </td>
+                
                    
             </tr>
         </ng-template>
@@ -57,5 +63,13 @@
                 <td colspan="5">No candidate found.</td>
             </tr>
         </ng-template>
+
+        <div *ngIf="checkSystemEmployee();">
+            <app-navi-employer-info></app-navi-employer-info>
+          </div>
+
+        <button  (click)="ApplyChanges(employer)" class="btn btn-primary">
+            Onayla
+        </button> 
     </p-table>
 </div>

@@ -50,92 +50,92 @@ export class CvViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getCandidatesById();
-    this.getCandidateSkills();
-    this.getCandidateSchools();
-    this.getCandidateLanguages();
-    this.getCandidateJobExperiences();
-    this.getCandidateCv();
-    this.getUserId();
+    // this.getCandidatesById();
+    // this.getCandidateSkills();
+    // this.getCandidateSchools();
+    // this.getCandidateLanguages();
+    // this.getCandidateJobExperiences();
+    // this.getCandidateCv();
+    // this.getUserId();
   }
 
-  getCandidatesById(){
-    this.candidateService.getCandidateById(this.getUserId()).subscribe((data:any)=>{
-      this.candidate=data.data;
-      console.log(this.candidate)
+  // getCandidatesById(){
+  //   this.candidateService.getCandidateById(this.getUserId()).subscribe((data:any)=>{
+  //     this.candidate=data.data;
+  //     console.log(this.candidate)
     
-  })
-  }
+  // })
+  // }
 
-  getCandidateLanguages() {
-    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+  // getCandidateLanguages() {
+  //   this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
         
-         this.language = response.data.candidateLanguages.map(o=>o.language)
-         this.candidateLanguages=response.data.candidateLanguages
-          console.log(this.language)
+  //        this.language = response.data.candidateLanguages.map(o=>o.language)
+  //        this.candidateLanguages=response.data.candidateLanguages
+  //         console.log(this.language)
          
-          this.languageNames=this.language.map(o=>o.name)
-          console.log(this.languageNames)
+  //         this.languageNames=this.language.map(o=>o.name)
+  //         console.log(this.languageNames)
 
          
-         console.log(this.language)
+  //        console.log(this.language)
           
           
-      });
+  //     });
     
-  }
+  // }
 
-  getCandidateJobExperiences(){
-    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+  // getCandidateJobExperiences(){
+  //   this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
         
-      this.candidateJobExperiences=response.data.candidateJobExperiences
-      this.position= response.data.candidateJobExperiences.map(o=>o.position)
-      this.positionTitles=this.position.map(o=>o.title)
+  //     this.candidateJobExperiences=response.data.candidateJobExperiences
+  //     this.position= response.data.candidateJobExperiences.map(o=>o.position)
+  //     this.positionTitles=this.position.map(o=>o.title)
      
-      });
+  //     });
    
-  }
+  // }
 
-  getCandidateSkills() {
-    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+  // getCandidateSkills() {
+  //   this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
         
-      this.candidateSkills=response.data.candidateSkills
-          this.skill= response.data.candidateSkills.map(o=>o.skill)
-          this.skillName=this.skill.map(o=>o.name)
+  //     this.candidateSkills=response.data.candidateSkills
+  //         this.skill= response.data.candidateSkills.map(o=>o.skill)
+  //         this.skillName=this.skill.map(o=>o.name)
           
-      });
+  //     });
    
-  }
+  // }
 
-  getCandidateSchools(){
-    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+  // getCandidateSchools(){
+  //   this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
         
-      this.candidateSchools=response.data.candidateSchools
+  //     this.candidateSchools=response.data.candidateSchools
           
-          this.school= response.data.candidateSchools.map(o=>o.school)
-          this.department= response.data.candidateSchools.map(o=>o.department)
-         this.schoolNames=this.school.map(o=>o.name)
-         this.departmentNames=this.department.map(o=>o.name)
+  //         this.school= response.data.candidateSchools.map(o=>o.school)
+  //         this.department= response.data.candidateSchools.map(o=>o.department)
+  //        this.schoolNames=this.school.map(o=>o.name)
+  //        this.departmentNames=this.department.map(o=>o.name)
           
-      });
+  //     });
      
-  }
+  // }
 
-  getCandidateCv(){
-    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+  // getCandidateCv(){
+  //   this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
         
-      this.cvTitle=response.data.cvs.map(o=>o.title)
-      this.cvs=response.data.cvs
-      console.log(this.cvTitle)
+  //     this.cvTitle=response.data.cvs.map(o=>o.title)
+  //     this.cvs=response.data.cvs
+  //     console.log(this.cvTitle)
           
-      });
+  //     });
      
-  }
+  // }
 
-  getUserId(): number {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    return this.user.data.id;
-  }
+  // getUserId(): number {
+  //   this.user = JSON.parse(localStorage.getItem('user'));
+  //   return this.user.data.id;
+  // }
 
   
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Candidate } from 'src/app/models/candicated/candidate/candidate';
+import { SystemEmployee } from 'src/app/models/system-employee/system-employee';
 import { User } from 'src/app/models/user/user';
 
 @Injectable({
@@ -20,6 +21,14 @@ export class UserService {
     return this.httpClient.get<User>(this.apiUrl + "/login?email=" + user.email + "&password=" + user.password);
   }
 
+  updateEmail(systemEmployee: SystemEmployee, userId:number): Observable<SystemEmployee> {
+    return this.httpClient.put<SystemEmployee>(this.apiUrl +"/update/email?email=" + systemEmployee.email + "&userId=" + userId, {systemEmployee,userId}
+    );
+  }
 
+  updatePassword(oldPassword:string,newPassword:string, userId:number): Observable<User> {
+    return this.httpClient.put<User>(this.apiUrl +"/update/pw?oldPassword=" + oldPassword+ "&password=" + newPassword+"&userId="+userId,{oldPassword,newPassword,userId}
+    );
+  }
 
 }

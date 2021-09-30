@@ -1,0 +1,67 @@
+<div class="content">
+    <div class="card">
+        <div class="card-body">
+
+            <form [formGroup]="employerCompanyUpdate">
+             
+                <div class="mb-3">
+                    <label>Company Name</label>
+                         <input  class="form-select" formControlName="companyName">
+                         <button [disabled]="!employerCompanyUpdate.valid" (click)="updateCompanyName()" class="btn btn-primary">
+                            Güncelle
+                          </button>  
+                </div>
+    
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="card">
+        <div class="card-body">
+
+            <form [formGroup]="employerPhoneNumber">
+
+                <div class="mb-3">
+                    <label>Phone Number</label>
+                         <input  class="form-select" formControlName="phoneNumber">
+                         <button [disabled]="!employerPhoneNumber.valid" (click)="updatePhoneNumber()" class="btn btn-primary">
+                            Güncelle
+                        </button>  
+                </div>
+       
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="card">
+        <div class="card-body">
+
+            <form [formGroup]="employerEmailAndWebsite">
+             
+                <div class="mb-3">
+                    <label>Email</label>
+                         <input  class="form-select" formControlName="email">
+                        
+                </div>
+
+                <div class="mb-3">
+                    <label>Website</label>
+                         <input  class="form-select" formControlName="website">
+                        
+                </div>
+
+
+
+                <button [disabled]="!employerEmailAndWebsite.valid" (click)="updateEmailAndWebsite()" class="btn btn-primary">
+                    Güncelle
+                </button>  
+               
+            </form>
+        </div>
+    </div>
+</div>
+

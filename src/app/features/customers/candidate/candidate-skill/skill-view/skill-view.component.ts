@@ -12,49 +12,44 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 })
 export class SkillViewComponent implements OnInit {
 
-
+  user :any
   candidates: Candidate[]=[]
   candidate: Candidate;
-  
-  
-  candidateSkills:CandidateSkill[]=[]
-  skill:Skill[]=[]
-  skillName:string[]=[]
+  candidateSkills:any
+ 
+
   constructor(
     private candidateService: CandidateService,
     private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      this.getCandidatesById(params["candidateId"])
-  })
+    this.getCandidatesById();
+    this.getCandidateSkills();
+    this.getUserId()
+   }
+ 
 
-
-this.activatedRoute.params.subscribe(params=>{
-  this.getCandidateSkills(params["candidateId"])
-})
-  }
-
-  getCandidateSkills(candidateId:number) {
-    this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
-        
+   getCandidateSkills() {
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+      this.candidate = response.data;
       this.candidateSkills=response.data.candidateSkills
-          this.skill= response.data.candidateSkills.map(o=>o.skill)
-          this.skillName=this.skill.map(o=>o.name)
-          
-      });
+       });
    
   }
-  
-    getCandidatesById(candidateId: number){
-      this.candidateService.getCandidateById(candidateId).subscribe((data:any)=>{
-        this.candidate=data.data;
-        console.log(this.candidate)
-      
-    })
-    }
+
+    getCandidatesById(){
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((data:any)=>{
+      this.candidate=data.data;
+      console.log(this.candidate)
+    
+  })
+  }
 
   
+  getUserId(): number {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    return this.user.data.id;
+  }
 
 }

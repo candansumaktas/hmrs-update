@@ -10,27 +10,44 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 })
 export class LinkedinViewComponent implements OnInit {
 
-
-
+  user :any
   candidates: Candidate[]=[]
   candidate: Candidate;
+  linkedinAccount:any
+ 
+
   constructor(
     private candidateService: CandidateService,
     private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      this.getCandidatesById(params["candidateId"])
-  })
+    this.getCandidatesById();
+    this.getCandidateLinkedin();
+    this.getUserId()
+   }
+ 
+
+   getCandidateLinkedin() {
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+      this.candidate = response.data;
+      this.linkedinAccount = response.data.linkedinAccount;
+       });
+   
   }
 
-  getCandidatesById(candidateId: number){
-    this.candidateService.getCandidateById(candidateId).subscribe((data:any)=>{
+    getCandidatesById(){
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((data:any)=>{
       this.candidate=data.data;
       console.log(this.candidate)
     
   })
+  }
+
+  
+  getUserId(): number {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    return this.user.data.id;
   }
 
 }

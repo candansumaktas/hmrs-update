@@ -1,18 +1,24 @@
 
-<h4>Skill Add </h4>
+
 
 <div class="card-header">
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#skillAdd">
-   
-     Add 
-   
+
+  
+  <div class="cv-school-img">
+    <img [src]="'assets/image/cv-skill-add.svg'"  width="100%">
+</div>
+   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button type="button" class="btn btn-primary me-md-2"  data-bs-toggle="modal" data-bs-target="#skillAdd">
+      Add 
   </button>
+   
+ </div>
   <!-- Modal -->
   <div class="modal fade" id="skillAdd" tabindex="-1" aria-labelledby="skillAdd" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="skillAdd">skill Add</h5>
+        <h5 class="modal-title" id="skillAdd">Skill Add</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -22,7 +28,7 @@
         
                     <form [formGroup]="candidateSkillForm">
                         <div class="mb-3">
-                            <label>Add Skill</label>
+                            
                             <select  class="form-select" formControlName="skillId" >
                                 <option value="" disabled>Skills </option>
                                 <option *ngFor="let skill of skills" [ngValue]="skill.id" >{{skill.name}}</option>  

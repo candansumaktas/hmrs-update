@@ -12,47 +12,44 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 })
 export class LanguageViewComponent implements OnInit {
 
- 
-
-  candidateLanguages: CandidateLanguage[] = []
-  candidates: Candidate[] = []
+  
+  user :any
+  candidates: Candidate[]=[]
   candidate: Candidate;
-
-  language: Language[] = []
-  languageNames: String[] = []
-
+  candidateLanguages:any
   constructor(private candidateService: CandidateService,
     private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.getCandidatesById(params["candidateId"])
-    })
+    this.getUserId()
+    this.getCandidatesById()
+    this.getCandidateLanguage()
+     
   }
-  getCandidatesById(candidateId: number) {
-    this.candidateService.getCandidateById(candidateId).subscribe((data: any) => {
-      this.candidate = data.data;
+
+  getCandidateLanguage(){
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+        
+     this.candidate = response.data;
+      this.candidateLanguages = response.data.candidateLanguages;
+  
+     
+      });
+   
+  }
+ 
+  getCandidatesById(){
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((data:any)=>{
+      this.candidate=data.data;
       console.log(this.candidate)
-
-    })
+    
+  })
   }
 
-  getCandidateLanguages(candidateId: number) {
-    this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
-
-      this.language = response.data.candidateLanguages.map(o => o.language)
-      this.candidateLanguages = response.data.candidateLanguages
-      console.log(this.language)
-
-      this.languageNames = this.language.map(o => o.name)
-      console.log(this.languageNames)
-
-
-      console.log(this.language)
-
-
-    });
-
+    getUserId(): number {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    return this.user.data.id;
   }
+
 
 }

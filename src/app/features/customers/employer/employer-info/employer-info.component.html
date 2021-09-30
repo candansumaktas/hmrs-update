@@ -1,0 +1,36 @@
+<div class="row justify-content-md-center">
+  <div class="col-12 col-md-8 col-xl-6 mb-4">
+    <div class="card border-light shadow-sm card-first">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <table class="table">
+              <tbody>
+                <tr>
+                  Company Name: {{ employer.companyName }}
+                </tr>
+                <tr>
+                  Email: {{ employer.email }}
+                </tr>
+                <tr>
+                  Phone Number : {{ employer.phoneNumber }}
+                </tr>
+                <tr>  
+                  website :  {{employer.website}}
+                </tr>
+
+                <tr *ngIf="employer.updateVerified===false; else elseIfBlock">
+                Güncelleme Bekleniyor
+                </tr>
+
+                <ng-template #elseIfBlock>
+                    Güncellendi
+                </ng-template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

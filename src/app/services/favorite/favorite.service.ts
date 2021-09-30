@@ -5,18 +5,24 @@ import { JobAdvertisement } from 'src/app/models/job-advertisement/job-advertise
 import { FavoriteItem } from 'src/app/models/state/favoriteItem';
 import * as AllFavoriteActions from "../../store/actions/favorite-action";
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Candidate } from 'src/app/models/candicated/candidate/candidate';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteService {
+  apiUrl=""
   favorites: FavoriteItem[] = []
   constructor( private toastrService:ToastrService,
-    private store: Store<any>
+    private store: Store<any>,
+    private httpClient: HttpClient
 
     ) { }
   
 
+  
     
   getFavorite() {
     this.store.select("favoriteReducer").subscribe(state => this.favorites = state)

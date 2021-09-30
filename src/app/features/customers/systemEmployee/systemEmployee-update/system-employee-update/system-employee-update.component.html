@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="card">
+        <div class="card-body">
+
+            <form [formGroup]="systemEmployeeEmailUpdate">
+             
+                <div class="mb-3">
+                    <label>Email</label>
+                         <input  class="form-select" formControlName="email">
+                         <button [disabled]="!systemEmployeeEmailUpdate.valid" (click)="updateEmail()" class="btn btn-primary">
+                            Güncelle
+                          </button>  
+                </div>
+    
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="card">
+        <div class="card-body">
+
+            <form [formGroup]="systemEmployeeFirstNameUpdate">
+
+                <div class="mb-3">
+                    <label>First Name</label>
+                         <input  class="form-select" formControlName="firstName">
+                         <button [disabled]="!systemEmployeeFirstNameUpdate.valid" (click)="updateFirstName()" class="btn btn-primary">
+                            Güncelle
+                        </button>  
+                </div>
+       
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="card">
+        <div class="card-body">
+
+            <form [formGroup]="systemEmployeeLastNameUpdate">
+             
+                <div class="mb-3">
+                    <label>Last Name</label>
+                         <input  class="form-select" formControlName="lastName">
+                         <button [disabled]="!systemEmployeeLastNameUpdate.valid" (click)="updateLastName()" class="btn btn-primary">
+                            Güncelle
+                        </button>  
+                </div>
+               
+            </form>
+        </div>
+    </div>
+</div>

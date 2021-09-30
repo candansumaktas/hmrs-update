@@ -11,12 +11,14 @@ import { PositionService } from 'src/app/services/position/position.service';
 export class PositionListComponent implements OnInit {
 
   positionList: Position[]=[]
+  selectedPosition:Position[]=[]
   page: number = 1;
   itemsPerPage:number=10;
   constructor(private positionService : PositionService) { }
 
   ngOnInit(): void {
     this.getPositions();
+   
   }
 
   getPositions(){
@@ -26,5 +28,11 @@ export class PositionListComponent implements OnInit {
     
   })
   }
+
+
+  deletePosition(){
+    
+  }
+ 
 
 }

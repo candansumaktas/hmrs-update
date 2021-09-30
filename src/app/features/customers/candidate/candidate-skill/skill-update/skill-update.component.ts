@@ -12,12 +12,10 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 })
 export class SkillUpdateComponent implements OnInit {
  
-  item:any
 
   constructor() { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
   }
-
 
 }

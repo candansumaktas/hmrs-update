@@ -12,36 +12,44 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 })
 export class JobExperienceViewComponent implements OnInit {
 
-
-  candidateJobExperiences: CandidateJobExperience[] = []
-  position: Position[] = []
-  positionTitles: string[] = []
+  user :any
   candidates: Candidate[]=[]
   candidate: Candidate;
+   candidateJobExperiences:any
+
   constructor(private candidateService: CandidateService,
     private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.getCandidatesById(params["candidateId"])
-    })
+    this.getUserId()
+    this.getCandidatesById()
+    this.getCandidateJobExperiences()
+    
   }
-  getCandidateJobExperiences(candidateId: number) {
-    this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
-
-      this.candidateJobExperiences = response.data.candidateJobExperiences
-      this.position = response.data.candidateJobExperiences.map(o => o.position)
-      this.positionTitles = this.position.map(o => o.title)
-
-    });
-
+  
+  getCandidateJobExperiences(){
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((response: any) => {
+        
+     this.candidate = response.data;
+      this.candidateJobExperiences = response.data.candidateJobExperiences;
+  
+     
+      });
+   
   }
-
-  getCandidatesById(candidateId: number){
-    this.candidateService.getCandidateById(candidateId).subscribe((data:any)=>{
+  
+  getCandidatesById(){
+    this.candidateService.getCandidateById(this.getUserId()).subscribe((data:any)=>{
       this.candidate=data.data;
       console.log(this.candidate)
     
   })
   }
+
+    getUserId(): number {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    return this.user.data.id;
+  }
+
+ 
 }

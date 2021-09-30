@@ -22,140 +22,103 @@ import { CvService } from 'src/app/services/cv/cv.service';
 })
 export class CandidateCvViewComponent implements OnInit {
 
-  candidates: Candidate[]=[]
+  candidates: Candidate[] = []
   candidate: Candidate;
-  candidateLanguages: CandidateLanguage[]=[]
-  candidateJobExperiences: CandidateJobExperience[]=[]
-  position:Position[]=[]
-  positionTitles: string[]=[]
-  language:Language[]=[]
-  languageNames:String[]=[]
-  school:School[]=[]
-  department:Department[]=[]
-  schoolNames:string[]=[]
-  departmentNames:String[]=[]
-  candidateSchools:CandidateSchool[]=[]
-  candidateSkills:CandidateSkill[]=[]
-  skill:Skill[]=[]
-  skillName:string[]=[]
-  cvs: Cv[]=[]
-  cvTitle:string;
-  coverLetter:string;
-  
-  
- 
+  candidateLanguages: any
+  candidateJobExperiences: any
+  candidateSchools: any
+  candidateSkills: any
+  cvs: any
+
+
+
+
   constructor(private cvService: CvService,
     private candidateService: CandidateService,
     private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
 
-    this.activatedRoute.params.subscribe(params=>{
+
+
+    this.activatedRoute.params.subscribe(params => {
       this.getCandidatesById(params["candidateId"])
-  })
-  this.activatedRoute.params.subscribe(params=>{
-    this.getCandidateLanguages(params["candidateId"])
-})
-this.activatedRoute.params.subscribe(params=>{
-  this.getCandidateJobExperiences(params["candidateId"])
-})
+    })
+    this.activatedRoute.params.subscribe(params => {
+      this.getCandidateLanguages(params["candidateId"])
+    })
+    this.activatedRoute.params.subscribe(params => {
+      this.getCandidateJobExperiences(params["candidateId"])
+    })
 
-this.activatedRoute.params.subscribe(params=>{
-  this.getCandidateSkills(params["candidateId"])
-})
+    this.activatedRoute.params.subscribe(params => {
+      this.getCandidateSkills(params["candidateId"])
+    })
 
-this.activatedRoute.params.subscribe(params=>{
-  this.getCandidateSchools(params["candidateId"])
-})
-this.activatedRoute.params.subscribe(params=>{
-  this.getCandidateCv(params["candidateId"])
-})
+    this.activatedRoute.params.subscribe(params => {
+      this.getCandidateSchools(params["candidateId"])
+    })
+    this.activatedRoute.params.subscribe(params => {
+      this.getCandidateCv(params["candidateId"])
+    })
 
-}
-
-
+  }
  
-
-  getCandidatesById(candidateId: number){
-    this.candidateService.getCandidateById(candidateId).subscribe((data:any)=>{
-      this.candidate=data.data;
+  getCandidatesById(candidateId: number) {
+    this.candidateService.getCandidateById(candidateId).subscribe((data: any) => {
+      this.candidate = data.data;
       console.log(this.candidate)
-    
-  })
+
+    })
   }
 
-  getCandidateLanguages(candidateId:number) {
+  getCandidateLanguages(candidateId: number) {
     this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
-        
-         this.language = response.data.candidateLanguages.map(o=>o.language)
-         this.candidateLanguages=response.data.candidateLanguages
-          console.log(this.language)
-         
-          this.languageNames=this.language.map(o=>o.name)
-          console.log(this.languageNames)
+       this.candidate = response.data;
+       this.candidateLanguages = response.data.candidateLanguages;
 
-         
-         console.log(this.language)
-          
-          
       });
-    
+
   }
 
-  getCandidateJobExperiences(candidateId:number){
+  getCandidateJobExperiences(candidateId: number) {
     this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
-        
-      this.candidateJobExperiences=response.data.candidateJobExperiences
-      this.position= response.data.candidateJobExperiences.map(o=>o.position)
-      this.positionTitles=this.position.map(o=>o.title)
-     
-      });
-   
-  }
+     this.candidate = response.data;
+      this.candidateJobExperiences = response.data.candidateJobExperiences;
+       });
+   }
 
-  getCandidateSkills(candidateId:number) {
+  getCandidateSkills(candidateId: number) {
     this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
-        
-      this.candidateSkills=response.data.candidateSkills
-          this.skill= response.data.candidateSkills.map(o=>o.skill)
-          this.skillName=this.skill.map(o=>o.name)
-          
-      });
-   
+       this.candidate = response.data;
+      this.candidateSkills = response.data.candidateSkills;
+     });
+
   }
 
-  getCandidateSchools(candidateId:number){
+  getCandidateSchools(candidateId: number) {
     this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
-        
-      this.candidateSchools=response.data.candidateSchools
-          
-          this.school= response.data.candidateSchools.map(o=>o.school)
-          this.department= response.data.candidateSchools.map(o=>o.department)
-         this.schoolNames=this.school.map(o=>o.name)
-         this.departmentNames=this.department.map(o=>o.name)
-          
-      });
-     
+       this.candidate = response.data;
+      this.candidateSchools = response.data.candidateSchools
+     });
+
   }
 
-  getCandidateCv(candidateId:number){
+  getCandidateCv(candidateId: number) {
     this.candidateService.getCandidateById(candidateId).subscribe((response: any) => {
-        
-      this.cvTitle=response.data.cvs.map(o=>o.title)
-      this.cvs=response.data.cvs
-      console.log(this.cvTitle)
-          
-      });
-     
+       this.candidate = response.data;
+      this.cvs = response.data.cvs
+     });
+
   }
 
 
-  
 
-  
-  
 
-  
+
+
+
+
 
 
 }

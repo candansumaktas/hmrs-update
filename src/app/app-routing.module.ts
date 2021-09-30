@@ -29,9 +29,14 @@ import { UnverifiedJobListComponent } from './job-advertisement/job-advertisemen
 import { UnverifiedJobListGuard } from './guards/job-advertisement/unverified-job-list/unverified-job-list.guard';
 import { FavoriteComponent } from './features/favorite/favorite.component';
 import { SchoolUpdateComponent } from './features/customers/candidate/candidate-school/school-update/school-update.component';
+import { SystemEmployeeUpdateComponent } from './features/customers/systemEmployee/systemEmployee-update/system-employee-update/system-employee-update.component';
+import { UserPasswordUpdateComponent } from './features/user-password-update/user-password-update.component';
+import { EmployerUpdateComponent } from './features/customers/employer/employer-update/employer-update.component';
+import { EmployerInfoComponent } from './features/customers/employer/employer-info/employer-info.component';
+import { AboutUsComponent } from './features/about-us/about-us.component';
  
 const routes: Routes = [
-  { path: "home", pathMatch: 'full', component:  HomeComponent},
+  { path: "", pathMatch: 'full', component:  HomeComponent},
   { path: "sign", component: CandidateSignComponent },
   { path: "login", component: UserLoginComponent },
   { path: "candidate-sign", component: CandidateSignComponent },
@@ -56,7 +61,13 @@ const routes: Routes = [
   {path:"cv-view", component:CvViewComponent},
   {path:"unverifiedJobList", component:UnverifiedJobListComponent, canActivate: [UnverifiedJobListGuard]},
   {path:"favorites", component:FavoriteComponent},
-  {path:"school-update", component:SchoolUpdateComponent}
+  {path:"school-update", component:SchoolUpdateComponent},
+  {path:"system-employee-update", component:SystemEmployeeUpdateComponent},
+  {path:"password-update", component:UserPasswordUpdateComponent},
+  {path:"employer-update", component:EmployerUpdateComponent},
+  {path:"view-employer", component:EmployerInfoComponent},
+  {path:"abuot-us", component:AboutUsComponent},
+  {path:"cv-view/job-advertisement-list", component:JobAdvertisementListComponent}
 
 
 

@@ -1,181 +1,34 @@
-<div class="row justify-content-md-center">
-  <div class="col-12 col-md-8 col-xl-6 mb-4">
-    <div class="card border-light shadow-sm card-first">
-      <div class="card-body">
-        <h3> {{cvTitle}}</h3>
+<div class="row">
 
-        <div class="container">
-          <div class="row">
+  <div class="col-md-3">
+    <app-candidate-sidebar-info></app-candidate-sidebar-info>
+  </div>
 
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>First Name: {{candidate.firstName}}</td>
-                </tr>
-                <tr>
-                  <td>Last Name: {{candidate.lastName}}</td>
-                </tr>
-                <tr>
-                  <td>Email : {{candidate.email}}</td>
-                </tr>
-                <tr> Birth Year : {{candidate.birthYear}}</tr>
-                <tr>
-                  <td>
-                    <span class="fa fa-copyright fa-2x" aria-hidden="true"></span>
-                  </td>
+  <div class="col-md-9">
+    <div class="row">
 
-                </tr>
-                <tr>
-                  <td>Github Address : {{candidate.githubAccount}}</td>
-                </tr>
-                <tr>
-                  <td>
-                    Linkedin Adress: {{candidate.linkedinAccount}}
-                  </td>
-                </tr>
-                <th>Ön yazı</th>
-                <tr *ngFor="let item of cvs">
-                  <td>
-                    {{item.coverLetter}}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <div class="col-md-8">
 
+        <div class="flex-shrink-0 p-3 bg-white shadow p-3 mb-5 bg-white rounded" style="width: 600px;  ">
 
-          <h1>
-            Something
-          </h1>
-          <h6>aoıgjnadkgnajkdfnbadkjşbgadnlkbnaşdjkbnadşjklbnadj</h6>
+          <ul class="list-unstyled ps-0">
+            <div class="accordion" id="accordionExample8">
+         
+        <div class="accordion-item" style="width: 560px;  ">
 
-          <div class="row">
-            <table>
-              <thead>
-                <th>Çalıştığı Pozisyon isimleri</th>
-                <th>Çalıştığı Yıllar</th>
-              </thead>
-              <tbody>
+        <app-school-view></app-school-view>
+        <app-job-experience-view></app-job-experience-view>
+        <app-language-view></app-language-view>
+        <app-skill-view></app-skill-view>
+        </div></div></ul></div>
 
-                <td>
-                  <tr *ngFor="let item of positionTitles">
-                    <td>{{item}}</td>
-                  </tr>
-                </td>
-                <td>
-                  <tr *ngFor="let item of candidateJobExperiences">
-                    <td>
-                      StartYear: {{item.startYear}}- QuitYear: {{item.quitYear}}
-                    </td>
-                  </tr>
-                </td>
-              </tbody>
-            </table>
-          </div>
+       </div>
 
-          <h1>
-            Something
-          </h1>
-          <h4>aoıgjnadkgnajkdfnbadkjşbgadnlkbnaşdjkbnadşjklbnadj</h4>
-
-
-          <div class="row">
-
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">Bildiği Diller</th>
-                  <th scope="col">Dil seviyeleri</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                <td>
-                  <tr *ngFor="let item of languageNames">
-                    <td>{{item}}</td>
-                  </tr>
-                </td>
-
-                <td>
-                  <tr *ngFor="let item of candidateLanguages">
-                    <td>{{item.languageLevel}}</td>
-                  </tr>
-                </td>
-
-              </tbody>
-            </table>
-          </div>
-
-
-          <h1>
-            Something
-          </h1>
-          <h4>aoıgjnadkgnajkdfnbadkjşbgadnlkbnaşdjkbnadşjklbnadj</h4>
-
-          <div class="row">
-            <table>
-
-              <thead>
-                <th>Adayın okul Bilgileri</th>
-                <th>Adayın okuduğu Bölümler</th>
-                <th>Başlangıç yılı</th>
-              </thead>
-              <tbody>
-
-                <td>
-                  <tr *ngFor="let item of schoolNames">
-                    <td>{{item}}</td>
-                  </tr>
-                </td>
-
-                <td>
-                  <tr *ngFor="let item of departmentNames">
-                    <td>
-                      {{item}}
-                    </td>
-                  </tr>
-                </td>
-
-                <td>
-                  <tr *ngFor="let item of candidateSchools">
-                    <td>
-                      Start year: {{item.startYear}} - Graduation Year :{{item.graduationYear}}
-                    </td>
-                  </tr>
-                </td>
-
-              </tbody>
-            </table>
-          </div>
-
-
-          <h1>
-            Something
-          </h1>
-
-          <h4>aoıgjnadkgnajkdfnbadkjşbgadnlkbnaşdjkbnadşjklbnadj</h4>
-
-          <div class="row">
-            <table>
-              <thead>
-                <th>Adayın bildiği Programlar</th>
-              </thead>
-              <tbody>
-                <td>
-                  <tr *ngFor="let item of skillName">
-                    <td>
-                      {{item}}
-                    </td>
-                  </tr>
-                </td>
-
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-
+      <div class="col-md-4">
+       <app-cv-info></app-cv-info>
       </div>
+
     </div>
+
   </div>
 </div>

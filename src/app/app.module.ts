@@ -55,8 +55,17 @@ import { LinkedinViewComponent } from './features/customers/candidate/candidate-
 import { LanguageViewComponent } from './features/customers/candidate/candidate-language/language-view/language-view.component';
 import { JobExperienceViewComponent } from './features/customers/candidate/candidate-jobExperince/job-experience-view/job-experience-view.component';
 import { SchoolUpdateComponent } from './features/customers/candidate/candidate-school/school-update/school-update.component';
-
- 
+import { SystemEmployeeUpdateComponent } from './features/customers/systemEmployee/systemEmployee-update/system-employee-update/system-employee-update.component';
+import { UserPasswordUpdateComponent } from './features/user-password-update/user-password-update.component';
+import { EmployerUpdateComponent } from './features/customers/employer/employer-update/employer-update.component';
+import { EmployerInfoComponent } from './features/customers/employer/employer-info/employer-info.component';
+import { SidebarComponent } from './features/sidebar/sidebar/sidebar.component';
+import { AboutUsComponent } from './features/about-us/about-us.component';
+import {CardModule} from 'primeng/card';
+import { CvInfoComponent } from './features/cv/cv-view/cv-info/cv-info.component'; 
+import { CandidateSidebarInfoComponent } from './features/sidebar/candidate-sidebar-info/candidate-sidebar-info.component';
+import { EmployerSidebarInfoComponent } from './features/sidebar/employer-sidebar-info/employer-sidebar-info.component';
+import { SystemEmployeeSidebarInfoComponent } from './features/sidebar/systemEmployee-sidebar-info/system-employee-sidebar-info.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +107,17 @@ import { SchoolUpdateComponent } from './features/customers/candidate/candidate-
     LinkedinViewComponent,
     LanguageViewComponent,
     JobExperienceViewComponent,
-    SchoolUpdateComponent
+    SchoolUpdateComponent,
+    SystemEmployeeUpdateComponent,
+    UserPasswordUpdateComponent,
+    EmployerUpdateComponent,
+    EmployerInfoComponent,
+    SidebarComponent,
+    CandidateSidebarInfoComponent,
+    EmployerSidebarInfoComponent,
+    SystemEmployeeSidebarInfoComponent,
+    AboutUsComponent,
+    CvInfoComponent
     
     
     
@@ -119,6 +138,8 @@ import { SchoolUpdateComponent } from './features/customers/candidate/candidate-
     ButtonModule,
     SplitButtonModule,
     TableModule,
+    CardModule,
+ 
     StoreModule.forRoot(
       { favoriteReducer },
       {
