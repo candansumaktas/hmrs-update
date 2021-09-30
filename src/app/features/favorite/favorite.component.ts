@@ -38,11 +38,12 @@ export class FavoriteComponent implements OnInit {
   }
 
   removeFromFavorite(jobAdvertisement: JobAdvertisement) {
-    this.candidateService.removeFromFavorites(jobAdvertisement,this.getUserId()).subscribe((response: any) => {
+    this.candidateService.removeFromFavorites(jobAdvertisement,this.getUserId()).subscribe((response: any) => 
+    
+    {this.router.navigate(["favorites"])
       this.toastrService.success("Favorilerden kaldırıldı")
-     
-
-    })
+      
+     })
   }
 
  
