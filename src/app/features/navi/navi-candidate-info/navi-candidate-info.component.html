@@ -2,14 +2,10 @@
     <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Hoşgeldiniz
+            Hoşgeldiniz {{candidate.firstName}}
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <li><a class="dropdown-item" routerLink="cv">Add Cv</a></li>
-            <li><a class="dropdown-item" routerLink="job-advertisement-list">Job Advertisement List</a></li>
-  
-            <li><a class="dropdown-item" routerLink="cv-view">view your cv</a></li>
-            <li><a class="dropdown-item" routerLink="favorites">view your favorites job advertisements</a></li>
+            
               <li><a class="dropdown-item" (click)="signOut()">Çıkış yap</a></li>
         </ul>
     </div>

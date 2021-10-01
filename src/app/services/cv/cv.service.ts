@@ -20,5 +20,19 @@ export class CvService {
   getCvs():Observable<Cv>{
     return this.httpClient.get<Cv>(this.apiUrl+"/get/all");
   }
+  updateCoverLetter(coverLetter: string, id:number): Observable<Cv> {
+    return this.httpClient.put<Cv>(this.apiUrl +"/update/coverLetter?coverLetter=" + coverLetter + "&cvId=" + id, {coverLetter, id}
+    );
+  }
+
+  updateCvTitle(title: string, id:number): Observable<Cv> {
+    return this.httpClient.put<Cv>(this.apiUrl +"/update/title?cvId=" + id + "&title=" + title, {id, title}
+    );
+  }
+
+  deleteCv(id:number): Observable<Cv>{
+    return this.httpClient.delete<Cv>(this.apiUrl +"/delete/byId?cvId=" + id
+    );
+  }
 
 }

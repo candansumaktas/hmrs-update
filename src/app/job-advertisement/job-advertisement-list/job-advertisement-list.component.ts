@@ -53,7 +53,7 @@ export class JobAdvertisementListComponent implements OnInit {
     this.jobAdvertisementService.closeJobAdvertisement(jobAdvertisement).subscribe((data: any) => {
       this.jobAdvertisements = data.data
       this.toastrService.success("İlan pasif hale getirildi")
-      console.log(this.jobAdvertisements)
+      setTimeout(() => window.location.reload(), 100);
     })
   }
 

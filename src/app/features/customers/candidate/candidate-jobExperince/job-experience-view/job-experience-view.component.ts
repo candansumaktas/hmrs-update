@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CandidateJobExperience } from 'src/app/models/candicated/candidate-job-experience/candidate-job-experience';
-import { Candidate } from 'src/app/models/candicated/candidate/candidate';
-import { Position } from 'src/app/models/position/position';
-import { CandidateService } from 'src/app/services/candidate/candidate.service';
+import { ToastrService } from 'ngx-toastr';
+ import { Candidate } from 'src/app/models/candicated/candidate/candidate';
+ import { CandidateJobExperienceService } from 'src/app/services/candidate-job-experience/candidate-job-experience.service';
+ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 
 @Component({
   selector: 'app-job-experience-view',
@@ -16,8 +16,11 @@ export class JobExperienceViewComponent implements OnInit {
   candidates: Candidate[]=[]
   candidate: Candidate;
    candidateJobExperiences:any
+id: number;
 
   constructor(private candidateService: CandidateService,
+    private candidateJobExperienceService:CandidateJobExperienceService,
+    private toastrService:ToastrService,
     private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
@@ -49,6 +52,19 @@ export class JobExperienceViewComponent implements OnInit {
     getUserId(): number {
     this.user = JSON.parse(localStorage.getItem('user'));
     return this.user.data.id;
+  }
+
+  deleteJobExperienceById(id: number) {
+    this.candidateJobExperienceService.removeFromJobExperiences(id).subscribe((response: any) => {
+      this.toastrService.success("Okul silindi.", "Başarılı!");
+      setTimeout(() => window.location.reload(), 1400);
+    });
+  }
+  
+  catchJobExperienceById(id:number){
+    this.id=id;
+    console.log(this.id)
+    console.log("burası calişti")
   }
 
  

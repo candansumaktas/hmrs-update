@@ -47,4 +47,9 @@ export class CandidateJobExperienceService {
     return this.httpClient.put<CandidateJobExperience>(this.apiUrl + '/update/quitYear?candJobExpId=' + candJobId + '&quitYear=' + quitYear, candidateJobExperience
     );
   }
+  removeFromJobExperiences(id: number){
+    return this.httpClient.delete(this.apiUrl + "/delete/byId?candJobExpId=" + id);
+  
+
+  }
 }

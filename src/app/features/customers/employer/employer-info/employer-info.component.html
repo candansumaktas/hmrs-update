@@ -1,36 +1,30 @@
-<div class="row justify-content-md-center">
-  <div class="col-12 col-md-8 col-xl-6 mb-4">
-    <div class="card border-light shadow-sm card-first">
-      <div class="card-body">
-        <div class="container">
-          <div class="row">
-            <table class="table">
-              <tbody>
-                <tr>
-                  Company Name: {{ employer.companyName }}
-                </tr>
-                <tr>
-                  Email: {{ employer.email }}
-                </tr>
-                <tr>
-                  Phone Number : {{ employer.phoneNumber }}
-                </tr>
-                <tr>  
-                  website :  {{employer.website}}
-                </tr>
+ 
 
-                <tr *ngIf="employer.updateVerified===false; else elseIfBlock">
-                Güncelleme Bekleniyor
-                </tr>
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+  <div class="card rounded">
+      <div class=" d-block justify-content-center">
+          <div class="area1 p-3 py-5"> </div>
+          <div class="area2 p- text-center px-3">
+              <div class="image mr-3"> <img src="https://images-ext-1.discordapp.net/external/utMsZhUuU7uHEinuAb4eNxCdS_BK-yp_fhbDEQe684M/http/www.depema.ag/fileadmin/images/icon_employer_gross.png" class="rounded-circle" width="50%" />
+                  <h4 class=" name mt-3 "> Company Name: {{ employer.companyName }}</h4>
 
-                <ng-template #elseIfBlock>
-                    Güncellendi
-                </ng-template>
-              </tbody>
-            </table>
+                  <ul class="list-group bg-white d-flex justify-content-center mt-5">
+                    <li class="list-group-item" style="color: darkslateblue; font-weight: bold;">Email: {{ employer.email }}</li>
+                    <li class="list-group-item"style="color: darkslateblue; font-weight: bold;">Phone Number : {{ employer.phoneNumber }}</li>
+                    <li class="list-group-item"style="color: darkslateblue; font-weight: bold;">website :  {{employer.website}}</li>
+                    <li *ngIf="employer.updateVerified===false; else elseIfBlock"> Güncelleme Bekleniyor!</li>
+                          <ng-template #elseIfBlock>
+                           <li>Girdiğiniz Bilgiler Güncellendi.</li> 
+                        </ng-template>
+                   
+                  </ul>
+
+                   <div class="">
+                   
+                  </div>
+              </div>
+              <div> </div>
           </div>
-        </div>
       </div>
-    </div>
   </div>
 </div>

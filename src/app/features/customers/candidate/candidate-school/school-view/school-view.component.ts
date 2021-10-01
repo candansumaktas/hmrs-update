@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CandidateSchool } from 'src/app/models/candicated/candidate-school/candidate-school';
 import { Candidate } from 'src/app/models/candicated/candidate/candidate';
 import { Department } from 'src/app/models/department/department';
 import { School } from 'src/app/models/school/school';
+import { CandidateSchoolService } from 'src/app/services/candidate-school/candidate-school.service';
 import { CandidateService } from 'src/app/services/candidate/candidate.service';
 
 @Component({
@@ -13,7 +15,7 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 })
 export class SchoolViewComponent implements OnInit {
 
- 
+  id:number;
   user: any;
   candidates: Candidate[]=[]
   candidate: Candidate;
@@ -27,6 +29,8 @@ export class SchoolViewComponent implements OnInit {
   
   constructor(
     private candidateService: CandidateService,
+    private candidateSchoolService: CandidateSchoolService,
+    private toastrService:ToastrService,
     private activatedRoute: ActivatedRoute,
   ) { }
 
@@ -58,6 +62,19 @@ export class SchoolViewComponent implements OnInit {
    getUserId(): number {
     this.user = JSON.parse(localStorage.getItem('user'));
     return this.user.data.id;
+  }
+
+  deleteSchoolById(id: number) {
+    this.candidateSchoolService.removeFromSchools(id).subscribe((response: any) => {
+      this.toastrService.success("Okul silindi.", "Başarılı!");
+      setTimeout(() => window.location.reload(), 1400);
+    });
+  }
+  
+  catchSchoolById(id:number){
+    this.id=id;
+    console.log(this.id)
+    console.log("burası calişti")
   }
   
 }

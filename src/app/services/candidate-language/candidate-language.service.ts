@@ -34,4 +34,8 @@ export class CandidateLanguageService {
     );
   }
 
+  removeFromLanguages(id: number){
+    return this.httpClient.delete(this.apiUrl + "/delete/byId?CandLangId=" + id);
+  }
+
 }

@@ -28,11 +28,5 @@ export class PositionListComponent implements OnInit {
     
   })
   }
-
-
-  deletePosition(){
-    
-  }
  
-
 }

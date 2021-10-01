@@ -63,9 +63,12 @@ export class UserLoginComponent implements OnInit {
     );
   }
 
-  
+  goPassword(){
+    this.router.navigate["password"]
+  }
 
-  
-     
+ 
+ 
+      
 
 }

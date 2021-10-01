@@ -63,6 +63,10 @@ export class CandidateSkillFromComponent implements OnInit {
     }
   }
 
+ 
+
+
+
   getSkills() {
     this.skillService.getSkill().subscribe((data: any) => {
       this.skills = data.data;

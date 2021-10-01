@@ -36,4 +36,8 @@ export class CandidateSchoolService {
     return this.httpClient.put<CandidateSchool>(this.apiUrl +"/update/startYear?candSchId=" + candSchId + "&startYear=" + startYear, candidateSchool
     );
   }
+
+  removeFromSchools(id: number){
+    return this.httpClient.delete(this.apiUrl + "/delete/byId?candSchId=" + id);
+  }
 }
