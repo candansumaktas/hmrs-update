@@ -15,27 +15,22 @@
           <div>
             <table>
               <tr>
-                <div class="row d-flex">
-                  <div class="col">
-                    <td>
-                      <p class="mb-0 opacity-75"> {{skill.skill.name}}</p>
-                    </td>
-                  </div>
-
-                  <div class="col d-flex justify-content-end">
-                    <td>
-                      <button pButton pRipple icon="pi pi-trash"  data-bs-dismiss="modal" class="p-button-danger"
-                        (click)="catchSkillId(skill.id)" (click)="deleteSkillsById(skill.id)"></button>
-
-                  </div>
-                </div>
-
+                <th></th>
+                <th style="width: 3rem;"></th>
               </tr>
-
+              <tr>
+                <td>
+                  <div class="mx-2 mt-2">
+                    <p class="mb-0 opacity-75"> {{skill.skill.name}}</p>
+                  </div>
+                </td>
+                <button pButton pRipple icon="pi pi-trash" data-bs-dismiss="modal" class="p-button-danger "
+                  (click)="catchSkillId(skill.id)" (click)="deleteSkillsById(skill.id)"></button>
+                <td>
+                </td>
+              </tr>
             </table>
             <h6 class="mb-0"> </h6>
-
-
           </div>
           <small class="opacity-50 text-nowrap"><span> </span></small>
         </div>

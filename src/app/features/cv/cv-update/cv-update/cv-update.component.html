@@ -2,7 +2,7 @@
     <form [formGroup]="updateCoverLetterForm">
         <div class="form-group">
             <div class="mb-3" *ngFor="let cv of cvs">
-                <label>Cover Letter {{cv.title}}</label>
+                <label>Cover Letter : {{cv.title}}</label>
                 
                 
                      <input  class="form-select" (click)="cathcId(cv.id)" formControlName="coverLetter">
@@ -22,7 +22,7 @@
     <form [formGroup]="updateCvTitleForm">
         <div class="form-group">
             <div class="mb-3" *ngFor="let cv of cvs">
-                <label>Cv Title {{cv.title}}</label>
+                <label>Cv Title : {{cv.title}}</label>
                 
                 
                      <input class="form-select" (click)="cathcId(cv.id)" formControlName="title">
@@ -36,19 +36,7 @@
           </button>
         </div>
 
-        <div class="mb-3" >
-          
-            
-            <ul *ngFor="let cv of cvs">
-                <li (click)="cathcId(cv.id)">{{cv.title}}</li>
-                <button class="btn btn-sm" (click)="deleteCv()" class="btn btn-primary">
-                    Sil
-                  </button>
-            </ul>
-            
-                
-                 
-        </div>
+       
              
     
     </form>

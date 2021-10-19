@@ -45,25 +45,20 @@ export class SystemEmployeeUpdateComponent implements OnInit {
 
   createSystemEmployeeFirstName() {
     this.systemEmployeeFirstNameUpdate = this.formBuilder.group({
-     
-      firstName:['', Validators.required],
-    
-     
-    });
+       firstName:['', Validators.required],
+     });
   }
 
   createSystemEmployeeLastName() {
     this.systemEmployeeLastNameUpdate= this.formBuilder.group({
       lastName: ['', Validators.required],
-     
-    });
+     });
   }
 
   createSystemEmployeeEmailUpdate() {
     this.systemEmployeeEmailUpdate = this.formBuilder.group({
       email: ['', Validators.required],
-     
-    });
+     });
   }
 
   getUserId(): number {
@@ -73,8 +68,7 @@ export class SystemEmployeeUpdateComponent implements OnInit {
 
   updateEmail(){
     if (this.systemEmployeeEmailUpdate.valid) {
-         
-          this.userService.updateEmail(this.systemEmployeeEmailUpdate.value,this.userId).subscribe(
+           this.userService.updateEmail(this.systemEmployeeEmailUpdate.value,this.userId).subscribe(
              (response: any) => {
                
               this.toastrService.success(response.message, 'Email güncellendi');

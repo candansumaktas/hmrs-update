@@ -21,8 +21,8 @@ export class UserService {
     return this.httpClient.get<User>(this.apiUrl + "/login?email=" + user.email + "&password=" + user.password);
   }
 
-  updateEmail(systemEmployee: SystemEmployee, userId:number): Observable<SystemEmployee> {
-    return this.httpClient.put<SystemEmployee>(this.apiUrl +"/update/email?email=" + systemEmployee.email + "&userId=" + userId, {systemEmployee,userId}
+  updateEmail(user: User, userId:number): Observable<SystemEmployee> {
+    return this.httpClient.put<SystemEmployee>(this.apiUrl +"/update/email?email=" + user.email + "&userId=" + userId, {user,userId}
     );
   }
 

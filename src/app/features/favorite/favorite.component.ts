@@ -42,6 +42,8 @@ export class FavoriteComponent implements OnInit {
     
     {this.router.navigate(["favorites"])
       this.toastrService.success("Favorilerden kaldırıldı")
+      setTimeout(() => window.location.reload(), 1400);
+
       
      })
   }
@@ -63,15 +65,14 @@ export class FavoriteComponent implements OnInit {
           console.log("Favoriler",this.favorites)   
           
       });
-     
-  }
+   }
 
-
-
-  getUserId(): number {
+   getUserId(): number {
     this.user = JSON.parse(localStorage.getItem('user'));
     return this.user.data.id;
   }
+
+
 }
 
 

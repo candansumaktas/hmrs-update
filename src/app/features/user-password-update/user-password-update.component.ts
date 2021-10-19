@@ -45,7 +45,7 @@ export class UserPasswordUpdateComponent implements OnInit {
           this.userService.updatePassword(this.userPasswordUpdate.value['oldPassword'],this.userPasswordUpdate.value['password'],this.getUserId()).subscribe(
              (response: any) => {
                
-              this.toastrService.success(response.message, 'Email güncellendi');
+              this.toastrService.success(response.message, 'Password güncellendi');
             },
             (responseError) => {
               this.toastrService.error(

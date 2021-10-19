@@ -8,31 +8,31 @@
   data-bs-parent="#accordionExample14">
   <div class="accordion-body">
     <div class="list-group">
-      <a *ngFor="let candidateSchool of candidateSchools"
-        class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-        <i class="bi bi-book-half opacity-75" style="font-size: 2rem; color: #78c2ad;"></i>
-        <div class="d-flex gap-2 w-100 justify-content-between">
-
+      <ng-container *ngFor="let candidateSchool of candidateSchools">
+         <table>
+          <tr>
+            <th></th>
+            <th style="width: 3rem;"></th>
+          </tr>
           <tr>
             <td>
 
-              <div>
+              <div class="mx-2 mt-2">
                 <h6 class="mb-0">{{candidateSchool.department.name}}</h6>
                 <p class="mb-0 opacity-75">{{candidateSchool.school.name}}</p>
               </div>
-              <small class="opacity-50 text-nowrap">{{candidateSchool.startYear}} - <span
+              <small class="mx-2 mt-2" >{{candidateSchool.startYear}} - <span
                   *ngIf="candidateSchool.graduationYear;">{{candidateSchool.graduationYear}}</span></small>
             </td>
+
             <td>
-              <button pButton pRipple   icon="pi pi-trash" class="p-button-danger" (click)="catchSchoolById(candidateSchool.id)" (click)="deleteSchoolById(candidateSchool.id)"  ></button>
-
-             </td>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-danger"
+                (click)="catchSchoolById(candidateSchool.id)" (click)="deleteSchoolById(candidateSchool.id)"></button>
+            </td>
           </tr>
+        </table>
 
-
-
-        </div>
-      </a>
+       </ng-container>
     </div>
   </div>
 </div>
