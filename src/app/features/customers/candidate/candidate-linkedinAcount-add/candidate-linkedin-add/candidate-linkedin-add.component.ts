@@ -17,9 +17,7 @@ export class CandidateLinkedinAddComponent implements OnInit {
   candidateLinkedinForm: FormGroup;
   candidateLinkedin:Candidate
   constructor(private formBuilder: FormBuilder,
-    private candidateSkillService: CandidateSkillService,
-    private router: Router,
-    private toastrService: ToastrService,
+     private toastrService: ToastrService,
     private candidateService:CandidateService) { }
 
   ngOnInit(): void {
@@ -38,8 +36,7 @@ export class CandidateLinkedinAddComponent implements OnInit {
   candidateLinkedinAdd() {
     console.log(this.candidateLinkedinForm.value)
       if (this.candidateLinkedinForm.valid) {
-        console.log("burası çalıştı")
-       this.candidateService.addLinkedin(this.candidateLinkedin,this.candidateLinkedinForm.value['linkedinAccount']).subscribe(
+        this.candidateService.addLinkedin(this.candidateLinkedin,this.candidateLinkedinForm.value['linkedinAccount']).subscribe(
         (response: any) => {
             this.toastrService.success(response.message, 'Hesap eklendi');
         },
@@ -57,10 +54,10 @@ export class CandidateLinkedinAddComponent implements OnInit {
 
   getUserId(): number {
     this.user= JSON.parse(localStorage.getItem("user"))
-    
+
      return this.user.data.id
   }
-  
+
   getCandidateById() {
     this.candidateService.getCandidateById(this.getUserId()).subscribe((response:any)=>{
       this.candidateLinkedin = response.data;

@@ -25,13 +25,13 @@ export class CandidateLanguageFormComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private languageService: LanguageService
-    
+
   ) {}
 
   ngOnInit(): void {
     this.createLanguageAddForm();
     this.getLanguages();
-  
+
   }
 
   createLanguageAddForm() {
@@ -42,8 +42,14 @@ export class CandidateLanguageFormComponent implements OnInit {
 }
 
   candidateLanguageAdd() {
+
     let user=JSON.parse(localStorage.getItem("user"))
-    let candidateLanguage: CandidateLanguage={candidateId:user.data.id,languageId:this.candidateLanguageForm.value.languageId,languageLevel:this.candidateLanguageForm.value.languageLevel}
+
+    let candidateLanguage: CandidateLanguage={
+      candidateId:user.data.id,
+      languageId:this.candidateLanguageForm.value.languageId,
+      languageLevel:this.candidateLanguageForm.value.languageLevel}
+
     if (this.candidateLanguageForm.valid) {
       this.candidateLanguageService.add(candidateLanguage).subscribe(
         (response: any) => {
@@ -67,6 +73,6 @@ export class CandidateLanguageFormComponent implements OnInit {
       this.languages= data.data;
     });
   }
-  
+
 
 }
