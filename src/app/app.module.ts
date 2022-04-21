@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CandidateSignComponent } from './features/sign/candidate-sign/sign.component';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployerSignComponent } from './features/sign/employer-sign/employer-sign.component';
 import { NaviEmployerInfoComponent } from './features/navi/navi-employer-info/navi-employer-info.component';
@@ -44,7 +44,7 @@ import { CvUpdateComponent } from './features/cv/cv-update/cv-update/cv-update.c
 import { UnverifiedJobListComponent } from './job-advertisement/job-advertisement-unverifiedJobList/unverified-job-list/unverified-job-list.component';
 import { TableModule } from 'primeng/table';
 import { FavoriteComponent } from './features/favorite/favorite.component';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { favoriteReducer } from './store/reducers/favorite-reducer';
 import { GithubViewComponent } from './features/customers/candidate/candidate-website/github-view/github-view.component';
 import { SkillViewComponent } from './features/customers/candidate/candidate-skill/skill-view/skill-view.component';
@@ -64,9 +64,24 @@ import { CvInfoComponent } from './features/cv/cv-view/cv-info/cv-info.component
 import { CandidateSidebarInfoComponent } from './features/sidebar/candidate-sidebar-info/candidate-sidebar-info.component';
 import { EmployerSidebarInfoComponent } from './features/sidebar/employer-sidebar-info/employer-sidebar-info.component';
 import { SystemEmployeeSidebarInfoComponent } from './features/sidebar/systemEmployee-sidebar-info/system-employee-sidebar-info.component';
-  
-  @NgModule({
- 
+import { rootReducer } from '.';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
+
+export function localStorageSyncReducer(
+  reducer: ActionReducer<any>
+): ActionReducer<any> {
+  return localStorageSync({
+    keys: [
+      {
+        rootReducer: [''],
+      },
+    ],
+    rehydrate: true,
+  })(reducer);
+}
+@NgModule({
   declarations: [
     AppComponent,
     NaviComponent,
@@ -117,11 +132,6 @@ import { SystemEmployeeSidebarInfoComponent } from './features/sidebar/systemEmp
     SystemEmployeeSidebarInfoComponent,
     AboutUsComponent,
     CvInfoComponent,
-    
-
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -131,7 +141,7 @@ import { SystemEmployeeSidebarInfoComponent } from './features/sidebar/systemEmp
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    ToastrModule.forRoot({ positionClass: "toast-bottom-right" }),
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
     AccordionModule,
     ToolbarModule,
     PanelMenuModule,
@@ -139,20 +149,15 @@ import { SystemEmployeeSidebarInfoComponent } from './features/sidebar/systemEmp
     SplitButtonModule,
     TableModule,
     CardModule,
-    FormsModule, 
-   
-
-      StoreModule.forRoot(
-      { favoriteReducer },
+    FormsModule,
+    StoreModule.forRoot(
+      { rootReducer },
       {
-        runtimeChecks: {
-          strictStateImmutability: false,
-        },
+        metaReducers,
       }
     ),
   ],
-  providers: [
-  ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
