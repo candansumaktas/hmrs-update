@@ -6,36 +6,37 @@ import { EmployerService } from 'src/app/services/employer/employer.service';
 @Component({
   selector: 'app-navi-employer-info',
   templateUrl: './navi-employer-info.component.html',
-  styleUrls: ['./navi-employer-info.component.css']
 })
 export class NaviEmployerInfoComponent implements OnInit {
-  
-  value:any;
-  employeeLogged:boolean;
-  employer:Employer;
-  constructor(private router: Router,
-    private employerService:EmployerService) { }
+  value: any;
+  employeeLogged: boolean;
+  employer: Employer;
+  constructor(
+    private router: Router,
+    private employerService: EmployerService
+  ) {}
 
   ngOnInit(): void {
     this.getEmployerInfo();
   }
 
-  signOut(){
-    localStorage.clear()
+  signOut() {
+    localStorage.clear();
     this.router.navigate(['home']);
   }
 
-  getEmployerInfo():any{
+  getEmployerInfo(): any {
     this.value = JSON.parse(localStorage.getItem('user'));
-    if (this.value.message === "employer Logged in"){
-      this.employerService.getEmployerById(this.value.data.id).subscribe((response: any)=>{
-        this.employer = response.data;
-      });
+    if (this.value.message === 'employer Logged in') {
+      this.employerService
+        .getEmployerById(this.value.data.id)
+        .subscribe((response: any) => {
+          this.employer = response.data;
+        });
       this.employeeLogged = true;
-    } else{
+    } else {
       this.employeeLogged = false;
     }
     return this.value.data;
-      }
- 
+  }
 }

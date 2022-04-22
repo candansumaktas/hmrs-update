@@ -6,32 +6,35 @@ import { JobAdvertisementService } from 'src/app/services/job-advertisement/job-
 @Component({
   selector: 'app-unverified-job-list',
   templateUrl: './unverified-job-list.component.html',
-  styleUrls: ['./unverified-job-list.component.css']
 })
 export class UnverifiedJobListComponent implements OnInit {
-
-  unverifiedJobAdvertisements: JobAdvertisement[]=[]
+  unverifiedJobAdvertisements: JobAdvertisement[] = [];
   page: number = 1;
-  itemsPerPage:number=10;
-  constructor(private jobAdvertisementService: JobAdvertisementService,
-    private toastrService: ToastrService) { }
+  itemsPerPage: number = 10;
+  constructor(
+    private jobAdvertisementService: JobAdvertisementService,
+    private toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.getActiveUnverifiedJobAdvertisement();
   }
 
-  getActiveUnverifiedJobAdvertisement(){
-    this.jobAdvertisementService.getUnverifiedJobList(1).subscribe((data:any)=>{
-      this.unverifiedJobAdvertisements=data.data;
-      console.log(data.data)
-  })
+  getActiveUnverifiedJobAdvertisement() {
+    this.jobAdvertisementService
+      .getUnverifiedJobList(1)
+      .subscribe((data: any) => {
+        this.unverifiedJobAdvertisements = data.data;
+        console.log(data.data);
+      });
   }
 
   changeVerification(jobAdvertisement: JobAdvertisement) {
-    this.jobAdvertisementService.changeVerificationOfJob(jobAdvertisement).subscribe((response:any)=>{
-      this.toastrService.success("Verification changed successfully.")
-     
-    })
+    this.jobAdvertisementService
+      .changeVerificationOfJob(jobAdvertisement)
+      .subscribe((response: any) => {
+        this.toastrService.success('Verification changed successfully.');
+      });
   }
 
   checkUser(): boolean {
@@ -46,7 +49,7 @@ export class UnverifiedJobListComponent implements OnInit {
     if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
-      if (value.includes("systemEmployee")) {
+      if (value.includes('systemEmployee')) {
         return true;
       } else {
         return false;
@@ -55,7 +58,4 @@ export class UnverifiedJobListComponent implements OnInit {
       return false;
     }
   }
-
- 
-
 }

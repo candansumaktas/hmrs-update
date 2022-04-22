@@ -9,16 +9,16 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 @Component({
   selector: 'app-candidate-linkedin-add',
   templateUrl: './candidate-linkedin-add.component.html',
-  styleUrls: ['./candidate-linkedin-add.component.css']
 })
 export class CandidateLinkedinAddComponent implements OnInit {
-
-  user:any;
+  user: any;
   candidateLinkedinForm: FormGroup;
-  candidateLinkedin:Candidate
-  constructor(private formBuilder: FormBuilder,
-     private toastrService: ToastrService,
-    private candidateService:CandidateService) { }
+  candidateLinkedin: Candidate;
+  constructor(
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService,
+    private candidateService: CandidateService
+  ) {}
 
   ngOnInit(): void {
     this.createLinkedinAddForm();
@@ -26,43 +26,48 @@ export class CandidateLinkedinAddComponent implements OnInit {
   }
 
   createLinkedinAddForm() {
-    this.candidateLinkedinForm=this.formBuilder.group({
-      userId:[this.getUserId()],
-      linkedinAccount: ["",Validators.required],
-  })
-}
-
+    this.candidateLinkedinForm = this.formBuilder.group({
+      userId: [this.getUserId()],
+      linkedinAccount: ['', Validators.required],
+    });
+  }
 
   candidateLinkedinAdd() {
-    console.log(this.candidateLinkedinForm.value)
-      if (this.candidateLinkedinForm.valid) {
-        this.candidateService.addLinkedin(this.candidateLinkedin,this.candidateLinkedinForm.value['linkedinAccount']).subscribe(
-        (response: any) => {
+    console.log(this.candidateLinkedinForm.value);
+    if (this.candidateLinkedinForm.valid) {
+      this.candidateService
+        .addLinkedin(
+          this.candidateLinkedin,
+          this.candidateLinkedinForm.value['linkedinAccount']
+        )
+        .subscribe(
+          (response: any) => {
             this.toastrService.success(response.message, 'Hesap eklendi');
-        },
-        (responseError) => {
-          this.toastrService.error(
-            JSON.stringify(responseError.error.data.errors),
-            'Doğrulama hatası'
-          );
-        }
-      );
-     } else {
+          },
+          (responseError) => {
+            this.toastrService.error(
+              JSON.stringify(responseError.error.data.errors),
+              'Doğrulama hatası'
+            );
+          }
+        );
+    } else {
       this.toastrService.error('form eksik');
     }
   }
 
   getUserId(): number {
-    this.user= JSON.parse(localStorage.getItem("user"))
+    this.user = JSON.parse(localStorage.getItem('user'));
 
-     return this.user.data.id
+    return this.user.data.id;
   }
 
   getCandidateById() {
-    this.candidateService.getCandidateById(this.getUserId()).subscribe((response:any)=>{
-      this.candidateLinkedin = response.data;
-      console.log(this.candidateLinkedin)
-    })
+    this.candidateService
+      .getCandidateById(this.getUserId())
+      .subscribe((response: any) => {
+        this.candidateLinkedin = response.data;
+        console.log(this.candidateLinkedin);
+      });
   }
-
 }

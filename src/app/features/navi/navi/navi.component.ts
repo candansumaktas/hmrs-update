@@ -6,18 +6,11 @@ import { User } from 'src/app/models/user/user';
 @Component({
   selector: 'app-navi',
   templateUrl: './navi.component.html',
-  styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
+  constructor(private toastrService: ToastrService) {}
 
-
-
-
-  constructor(private toastrService: ToastrService) { }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   checkUser(): boolean {
     if (localStorage.getItem('user')) {
@@ -31,7 +24,7 @@ export class NaviComponent implements OnInit {
     if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
-      if (value.includes("employer")) {
+      if (value.includes('employer')) {
         return true;
       } else {
         return false;
@@ -45,7 +38,7 @@ export class NaviComponent implements OnInit {
     if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
-      if (value.includes("candidate")) {
+      if (value.includes('candidate')) {
         return true;
       } else {
         return false;
@@ -59,7 +52,7 @@ export class NaviComponent implements OnInit {
     if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
-      if (value.includes("systemEmployee")) {
+      if (value.includes('systemEmployee')) {
         return true;
       } else {
         return false;
@@ -68,12 +61,4 @@ export class NaviComponent implements OnInit {
       return false;
     }
   }
-  
-  }
-
-
-
-
-
-
-
+}

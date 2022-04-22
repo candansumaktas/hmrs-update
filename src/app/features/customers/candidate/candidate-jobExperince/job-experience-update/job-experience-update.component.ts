@@ -8,14 +8,9 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 @Component({
   selector: 'app-job-experience-update',
   templateUrl: './job-experience-update.component.html',
-  styleUrls: ['./job-experience-update.component.css']
 })
 export class JobExperienceUpdateComponent implements OnInit {
+  constructor() {}
 
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

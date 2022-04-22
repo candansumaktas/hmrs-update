@@ -8,7 +8,6 @@ import { PositionService } from 'src/app/services/position/position.service';
 @Component({
   selector: 'app-position-add',
   templateUrl: './position-add.component.html',
-  styleUrls: ['./position-add.component.css'],
 })
 export class PositionAddComponent implements OnInit {
   positionAddForm: FormGroup;
@@ -33,7 +32,7 @@ export class PositionAddComponent implements OnInit {
   }
 
   positionAdd() {
-     if (this.positionAddForm.valid) {
+    if (this.positionAddForm.valid) {
       if (this.positionDuplicate(this.positionAddForm.value)) {
         this.positionService.positionAdd(this.positionAddForm.value).subscribe(
           (response: any) => {
@@ -48,19 +47,19 @@ export class PositionAddComponent implements OnInit {
             );
           }
         );
-      }else{
+      } else {
         this.toastrService.error('iki kere aynı pozisyon eklenemez');
       }
     } else {
       this.toastrService.error('Hata.');
     }
   }
-  getPositions(){
-    this.positionService.getPositions().subscribe((data :any)=>{
-      this.positions=data.data;
-  })
-}
-  
+  getPositions() {
+    this.positionService.getPositions().subscribe((data: any) => {
+      this.positions = data.data;
+    });
+  }
+
   positionDuplicate(position: Position) {
     let name = this.positions.find((p) => p.title === position.title);
     if (name) {
@@ -70,5 +69,4 @@ export class PositionAddComponent implements OnInit {
       return true;
     }
   }
-
 }

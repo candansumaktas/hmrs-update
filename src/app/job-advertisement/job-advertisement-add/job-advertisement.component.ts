@@ -14,23 +14,23 @@ import { PositionService } from '../../services/position/position.service';
 @Component({
   selector: 'app-job-advertisement',
   templateUrl: './job-advertisement.component.html',
-  styleUrls: ['./job-advertisement.component.css']
 })
 export class JobAdvertisementComponent implements OnInit {
+  jobAdvertisementForm: FormGroup;
+  positions: Position[] = [];
+  cities: City[] = [];
+  employers: Employer[] = [];
+  workModels = WorkModels;
+  workTimes = WorkTimes;
 
-  jobAdvertisementForm:FormGroup;
-  positions: Position[] = []
-  cities: City[] = []
-  employers: Employer[]=[]
-  workModels=WorkModels;
-  workTimes=WorkTimes;
-
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private jobAdvertisementService: JobAdvertisementService,
     private toastrService: ToastrService,
     private cityService: CityService,
     private employerService: EmployerService,
-    private positionService: PositionService) { }
+    private positionService: PositionService
+  ) {}
 
   ngOnInit(): void {
     this.createEmployerSignForm();
@@ -39,62 +39,59 @@ export class JobAdvertisementComponent implements OnInit {
     this.getJobPositions();
   }
 
-  createEmployerSignForm(){
-    this.jobAdvertisementForm=this.formBuilder.group({
-      cityId: ["", Validators.required],
-      deadline: ["", Validators.required],
-      employerId: ["", Validators.required],
-      jobDescription: ["", Validators.required],
-      maxSalary: [""],
-      minSalary: [""],
-      openPositions: ["", Validators.required],
-      positionId: ["", Validators.required],
-      workModel: ["", Validators.required],
-      workTime: ["", Validators.required],
-    })
+  createEmployerSignForm() {
+    this.jobAdvertisementForm = this.formBuilder.group({
+      cityId: ['', Validators.required],
+      deadline: ['', Validators.required],
+      employerId: ['', Validators.required],
+      jobDescription: ['', Validators.required],
+      maxSalary: [''],
+      minSalary: [''],
+      openPositions: ['', Validators.required],
+      positionId: ['', Validators.required],
+      workModel: ['', Validators.required],
+      workTime: ['', Validators.required],
+    });
   }
 
-  add(){
-    
-    
-    if(this.jobAdvertisementForm.valid){
-      
-        this.jobAdvertisementService.add(this.jobAdvertisementForm.value).subscribe((response: any) =>{
-          console.log(this.jobAdvertisementForm.value)
-          this.toastrService.success(response.message, "Aday eklendi");
-         
-        }, (responseError) => {
-          this.toastrService.error(
-            JSON.stringify(responseError.error.data.errors),
-            'Doğrulama hatası'
-          );
-        }
-      )    
-      }else{
-      this.toastrService.error("Form eksik")
+  add() {
+    if (this.jobAdvertisementForm.valid) {
+      this.jobAdvertisementService
+        .add(this.jobAdvertisementForm.value)
+        .subscribe(
+          (response: any) => {
+            console.log(this.jobAdvertisementForm.value);
+            this.toastrService.success(response.message, 'Aday eklendi');
+          },
+          (responseError) => {
+            this.toastrService.error(
+              JSON.stringify(responseError.error.data.errors),
+              'Doğrulama hatası'
+            );
+          }
+        );
+    } else {
+      this.toastrService.error('Form eksik');
     }
-
   }
 
-  getCities(){
+  getCities() {
     this.cityService.getCities().subscribe((data: any) => {
-      this.cities = data.data
-      console.log(this.cities)
-    })
+      this.cities = data.data;
+      console.log(this.cities);
+    });
   }
 
   getJobPositions() {
     this.positionService.getPositions().subscribe((data: any) => {
-      this.positions = data.data
-      console.log(this.positions)
-    })
+      this.positions = data.data;
+      console.log(this.positions);
+    });
   }
 
-  getEmployers(){
-    this.employerService.getEmployer().subscribe((data:any)=>{
-      this.employers=data.data
-    })
+  getEmployers() {
+    this.employerService.getEmployer().subscribe((data: any) => {
+      this.employers = data.data;
+    });
   }
-
-
 }

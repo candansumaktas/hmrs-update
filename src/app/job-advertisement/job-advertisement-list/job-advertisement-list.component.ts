@@ -11,62 +11,67 @@ import { CandidateService } from 'src/app/services/candidate/candidate.service';
 @Component({
   selector: 'app-job-advertisement-list',
   templateUrl: './job-advertisement-list.component.html',
-  styleUrls: ['./job-advertisement-list.component.css']
 })
 export class JobAdvertisementListComponent implements OnInit {
-
-  jobAdvertisements: JobAdvertisement[] = []
+  jobAdvertisements: JobAdvertisement[] = [];
   page: number = 1;
   itemsPerPage: number = 10;
-  filterText: String = "";
-  favoriteItem: FavoriteItem
+  filterText: String = '';
+  favoriteItem: FavoriteItem;
   user: any;
-  constructor(private jobAdvertisementService: JobAdvertisementService,
+  constructor(
+    private jobAdvertisementService: JobAdvertisementService,
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private store: Store<any>,
     private favoriteService: FavoriteService,
-    private candidateService: CandidateService) { }
+    private candidateService: CandidateService
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.getActiveJobAdvertisementsByEmployer(params["employerId"])
-    })
+    this.activatedRoute.params.subscribe((params) => {
+      this.getActiveJobAdvertisementsByEmployer(params['employerId']);
+    });
     this.getActiveJobAdvertisement();
     this.getUserId();
   }
 
   getActiveJobAdvertisement() {
-    this.jobAdvertisementService.getActiveJobAdvertisements().subscribe((data: any) => {
-      this.jobAdvertisements = data.data;
-      console.log(data.data)
-    })
+    this.jobAdvertisementService
+      .getActiveJobAdvertisements()
+      .subscribe((data: any) => {
+        this.jobAdvertisements = data.data;
+        console.log(data.data);
+      });
   }
 
   changeStatus(jobAdvertisement: JobAdvertisement) {
-
-    this.jobAdvertisementService.closeJobAdvertisement(jobAdvertisement).subscribe((data: any) => {
-      this.jobAdvertisements = data.data
-      this.toastrService.success("İlan pasif hale getirildi")
-      setTimeout(() => window.location.reload(), 100);
-    })
+    this.jobAdvertisementService
+      .closeJobAdvertisement(jobAdvertisement)
+      .subscribe((data: any) => {
+        this.jobAdvertisements = data.data;
+        this.toastrService.success('İlan pasif hale getirildi');
+        setTimeout(() => window.location.reload(), 100);
+      });
   }
 
-
   SortByCreatedDate() {
-    this.jobAdvertisementService.getActiveJobAdvertisementsByDate(1).subscribe((data: any) => {
-      this.jobAdvertisements = data.data
-      console.log(this.jobAdvertisements)
-    })
-
+    this.jobAdvertisementService
+      .getActiveJobAdvertisementsByDate(1)
+      .subscribe((data: any) => {
+        this.jobAdvertisements = data.data;
+        console.log(this.jobAdvertisements);
+      });
   }
 
   getActiveJobAdvertisementsByEmployer(employerId: number) {
-    return this.jobAdvertisementService.getActiveJobAdvertisementsByCompany(employerId).subscribe((data: any) => {
-      this.jobAdvertisements = data.data
-      console.log(data.data);
-    });
+    return this.jobAdvertisementService
+      .getActiveJobAdvertisementsByCompany(employerId)
+      .subscribe((data: any) => {
+        this.jobAdvertisements = data.data;
+        console.log(data.data);
+      });
   }
 
   checkUser(): boolean {
@@ -81,7 +86,7 @@ export class JobAdvertisementListComponent implements OnInit {
     if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
-      if (value.includes("employer")) {
+      if (value.includes('employer')) {
         return true;
       } else {
         return false;
@@ -90,12 +95,12 @@ export class JobAdvertisementListComponent implements OnInit {
       return false;
     }
   }
-  
-   checkCandidate(): boolean {
+
+  checkCandidate(): boolean {
     if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
-      if (value.includes("candidate")) {
+      if (value.includes('candidate')) {
         return true;
       } else {
         return false;
@@ -109,7 +114,7 @@ export class JobAdvertisementListComponent implements OnInit {
     if (this.checkUser()) {
       let user = JSON.parse(localStorage.getItem('user'));
       let value = user.message;
-      if (value.includes("systemEmployee")) {
+      if (value.includes('systemEmployee')) {
         return true;
       } else {
         return false;
@@ -120,9 +125,11 @@ export class JobAdvertisementListComponent implements OnInit {
   }
 
   changeVerificationToUnverified(jobAdvertisement: JobAdvertisement) {
-    this.jobAdvertisementService.makeUnverified(jobAdvertisement).subscribe((response: any) => {
-      this.toastrService.success("Verification changed successfully.")
-    })
+    this.jobAdvertisementService
+      .makeUnverified(jobAdvertisement)
+      .subscribe((response: any) => {
+        this.toastrService.success('Verification changed successfully.');
+      });
   }
 
   // addToFavorite(jobAdvertisement: JobAdvertisement) {
@@ -132,16 +139,21 @@ export class JobAdvertisementListComponent implements OnInit {
   // }
 
   addToFavorite(jobAdvertisement: JobAdvertisement) {
-    console.log("calişti")
-    this.candidateService.addToFavorites(this.getUserId(), jobAdvertisement).subscribe((response: any) => {
-      console.log("calişti")
-      this.toastrService.success(response.message, 'Favorilere eklendi');
-    },
-      (responseError) => {
-        this.toastrService.error(
-          JSON.stringify(responseError.error.data.errors),
-          'İki kere Favorilere eklenemez');
-      })
+    console.log('calişti');
+    this.candidateService
+      .addToFavorites(this.getUserId(), jobAdvertisement)
+      .subscribe(
+        (response: any) => {
+          console.log('calişti');
+          this.toastrService.success(response.message, 'Favorilere eklendi');
+        },
+        (responseError) => {
+          this.toastrService.error(
+            JSON.stringify(responseError.error.data.errors),
+            'İki kere Favorilere eklenemez'
+          );
+        }
+      );
   }
 
   getUserId(): number {
@@ -150,11 +162,10 @@ export class JobAdvertisementListComponent implements OnInit {
   }
 
   changeVerification(jobAdvertisement: JobAdvertisement) {
-    this.jobAdvertisementService.changeVerificationOfJob(jobAdvertisement).subscribe((response: any) => {
-      this.toastrService.success("Verification changed successfully.")
-    })
+    this.jobAdvertisementService
+      .changeVerificationOfJob(jobAdvertisement)
+      .subscribe((response: any) => {
+        this.toastrService.success('Verification changed successfully.');
+      });
   }
-
 }
-
-

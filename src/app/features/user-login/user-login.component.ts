@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user/user';
 import { UserService } from 'src/app/services/user/user.service';
-import {MenuItem} from 'primeng/api';
-import {ToolbarModule} from 'primeng/toolbar';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-user-login',
@@ -30,10 +24,7 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginUserForm();
-     
-   }
-
-   
+  }
 
   loginUserForm() {
     this.loginForm = this.formBuilder.group({
@@ -63,12 +54,7 @@ export class UserLoginComponent implements OnInit {
     );
   }
 
-  goPassword(){
-    this.router.navigate["password"]
+  goPassword() {
+    this.router.navigate['password'];
   }
-
- 
- 
-      
-
 }

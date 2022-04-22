@@ -12,11 +12,10 @@ import { PositionService } from 'src/app/services/position/position.service';
 @Component({
   selector: 'app-candidate-job-experince-form',
   templateUrl: './candidate-job-experince-form.component.html',
-  styleUrls: ['./candidate-job-experince-form.component.css']
 })
 export class CandidateJobExperinceFormComponent implements OnInit {
-  employers: Employer[]=[]
-  positions: Position[]=[]
+  employers: Employer[] = [];
+  positions: Position[] = [];
   candidateJobExperienceForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -25,31 +24,32 @@ export class CandidateJobExperinceFormComponent implements OnInit {
     private toastrService: ToastrService,
     private positionService: PositionService,
     private employerService: EmployerService
-    
-    
   ) {}
 
   ngOnInit(): void {
     this.createJobExperienceAddForm();
     this.getPositions();
     this.getEmployers();
-    
-  
   }
 
   createJobExperienceAddForm() {
-    this.candidateJobExperienceForm=this.formBuilder.group({
-      positionId:["",Validators.required],
-      quitYear: ["",Validators.required],
-      startYear: ["",Validators.required],
-      workPlace: ["",Validators.required],
-  })
-}
+    this.candidateJobExperienceForm = this.formBuilder.group({
+      positionId: ['', Validators.required],
+      quitYear: ['', Validators.required],
+      startYear: ['', Validators.required],
+      workPlace: ['', Validators.required],
+    });
+  }
 
   candidateJobExperienceAdd() {
-    let user=JSON.parse(localStorage.getItem("user"))
-    let candidateJobExperience: CandidateJobExperience={candidateId:user.data.id,positionId:this.candidateJobExperienceForm.value.positionId,quitYear:this.candidateJobExperienceForm.value.quitYear,
-    startYear: this.candidateJobExperienceForm.value.startYear, workPlace: this.candidateJobExperienceForm.value.workPlace}
+    let user = JSON.parse(localStorage.getItem('user'));
+    let candidateJobExperience: CandidateJobExperience = {
+      candidateId: user.data.id,
+      positionId: this.candidateJobExperienceForm.value.positionId,
+      quitYear: this.candidateJobExperienceForm.value.quitYear,
+      startYear: this.candidateJobExperienceForm.value.startYear,
+      workPlace: this.candidateJobExperienceForm.value.workPlace,
+    };
     if (this.candidateJobExperienceForm.valid) {
       this.candidateJobExperienceService.add(candidateJobExperience).subscribe(
         (response: any) => {
@@ -70,16 +70,13 @@ export class CandidateJobExperinceFormComponent implements OnInit {
 
   getPositions() {
     this.positionService.getPositions().subscribe((data: any) => {
-      this.positions= data.data;
+      this.positions = data.data;
     });
   }
 
   getEmployers() {
     this.employerService.getEmployer().subscribe((data: any) => {
-      this.employers= data.data;
+      this.employers = data.data;
     });
   }
-
-  
-
 }
